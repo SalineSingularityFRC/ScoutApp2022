@@ -4,6 +4,8 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
+const val VERSION: String = "0.0.1"
+
 fun <T : AppCompatActivity> alert(obj: T, title: String, message: String, listener: DialogInterface.OnClickListener) {
     // make a popup message to alert the user
     val builder = AlertDialog.Builder(obj)
