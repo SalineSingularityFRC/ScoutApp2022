@@ -23,7 +23,7 @@ class BluetoothClass(a: MainActivity?) {
     private val handler = Handler()
     private val bluetooth: Bluetooth
     // TODO: How do we avoid hardcoding the MAC addr?
-    private val macAddr: String = "B8:27:EB:24:CF:68" //Put the bluetooth address of you Pi server here
+    private val macAddr: String = "B8:27:EB:EB:64:53" //Put the bluetooth address of you Pi server here
 
     init {
         this.bluetooth = Bluetooth(this.activity)
