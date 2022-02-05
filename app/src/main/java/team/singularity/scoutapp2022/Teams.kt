@@ -1,12 +1,15 @@
 package team.singularity.scoutapp2022
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class Teams : AppCompatActivity() {
     private val tag = "Teams"
@@ -36,9 +39,16 @@ class Teams : AppCompatActivity() {
 
         view.adapter = adapter
 
-        // bluetooth code
+        view.setOnItemClickListener { adapter, view, i, l ->
+            /* TODO : make this more direct */
+            val teamNumber = (view.findViewById<View>(R.id.teamNumber) as TextView).text.toString()
+            val match = Intent(applicationContext, Match::class.java)
+            match.putExtra("Team Number", teamNumber)
+            startActivity(match)
+            finish()
+        }
 
-        Log.e(tag, "Database.teamData length: ${Database.teamData().length()}")
+        // bluetooth code
 
         // iterate over all teams in the database
         // for (int i = 0; i < teamData.length(); i++)

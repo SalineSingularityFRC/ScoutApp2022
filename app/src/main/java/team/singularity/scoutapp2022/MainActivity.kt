@@ -1,6 +1,5 @@
 package team.singularity.scoutapp2022
 
-import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

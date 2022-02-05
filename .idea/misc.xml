@@ -8,10 +8,14 @@
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/content_teams.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_teams_layout_list.xml" value="0.268" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/teams_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_match.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_teams.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/content_teams.xml" value="0.16304347826086957" />
+        <entry key="app/src/main/res/layout/teams_layout.xml" value="0.3465164184570313" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
