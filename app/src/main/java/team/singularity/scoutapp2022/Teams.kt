@@ -38,9 +38,11 @@ class Teams : AppCompatActivity() {
 
         // bluetooth code
 
+        Log.e(tag, "Database.teamData length: ${Database.teamData().length()}")
+
         // iterate over all teams in the database
         // for (int i = 0; i < teamData.length(); i++)
-        for (i in 0 until Database.teamData.length()) {
+        for (i in 0 until Database.teamData().length()) {
             val resultsMap = HashMap<String, String>()
 
             // set name and number

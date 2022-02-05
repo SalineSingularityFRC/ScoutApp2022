@@ -35,6 +35,7 @@ class BluetoothClass(a: MainActivity?) {
         override fun onConnect(device: BluetoothDevice) {
             Log.i(tag, "Connected to device ${device.name} at ${device.address}")
             bluetooth.send(pendingData)
+            pendingData = ""
         }
 
         @SuppressLint("MissingPermission")
@@ -49,7 +50,17 @@ class BluetoothClass(a: MainActivity?) {
             Log.i(tag, "Got a message: '$message'")
 
             Log.i(tag, "Sending message '$message'")
-            activity?.database?.dataSent(message)
+
+            /* TODO : clean up this if chain */
+            if (activity == null) {
+                Log.e(tag, "ACTIVITY NULL!")
+            } else {
+                if (activity.database == null) {
+                    Log.e(tag, "DATABASE NULL!")
+                } else {
+                    activity.database!!.dataSent(message)
+                }
+            }
             Log.i(tag, "Data transfer complete")
         }
 
