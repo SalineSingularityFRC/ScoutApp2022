@@ -40,4 +40,9 @@ class MainActivity : AppCompatActivity() {
             started = true
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        bluetooth.end()
+    }
 }

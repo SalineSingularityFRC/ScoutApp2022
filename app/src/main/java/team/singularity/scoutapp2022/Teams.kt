@@ -38,12 +38,24 @@ class Teams : AppCompatActivity() {
 
         // bluetooth code
 
-        for (i in 0 until 10) {
-            var map = HashMap<String, String>();
+        // iterate over all teams in the database
+        // for (int i = 0; i < teamData.length(); i++)
+        for (i in 0 until Database.teamData.length()) {
+            val resultsMap = HashMap<String, String>()
 
-            map["name"] = i.toString()
-            map["number"] = i.toString()
-            list.add(map)
+            // set name and number
+            resultsMap["name"] = getTeamName(i)
+            resultsMap["number"] = "${getTeamNumber(i)}"
+            list.add(resultsMap)
+        }
+
+        // iterate over local teams
+        for (i in 0 until Database.tempTeamData.length()) {
+            val resultsMap = HashMap<String, String>()
+
+            resultsMap["name"] = getLocalTeamName(i)
+            resultsMap["number"] = "${getLocalTeamNumber(i)}"
+            list.add(resultsMap)
         }
     }
 }

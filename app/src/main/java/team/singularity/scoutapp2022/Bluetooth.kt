@@ -19,11 +19,11 @@ class BluetoothClass(a: MainActivity?) {
     private val tag = "7G7 Bluetooth"
     private var setup = false
     var pendingData: String = ""
-    // TODO: Handler is deprecated, what's an alternative?
+    /* TODO: Handler is deprecated, what's an alternative? */
     private val handler = Handler()
     private val bluetooth: Bluetooth
-    // TODO: How do we avoid hardcoding the MAC addr?
-    private val macAddr: String = "B8:27:EB:EB:64:53" //Put the bluetooth address of you Pi server here
+    /* TODO: How do we avoid hardcoding the MAC address? */
+    private val macAddr: String = "B8:27:EB:E8:64:53" //Put the bluetooth address of you Pi server here
 
     init {
         this.bluetooth = Bluetooth(this.activity)

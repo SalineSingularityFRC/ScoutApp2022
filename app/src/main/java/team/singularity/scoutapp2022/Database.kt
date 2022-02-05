@@ -58,7 +58,7 @@ class Database {
                             if (it != null) it.write("{[]}".toByteArray()) else {
                                 Log.e(tag, "it (bluetooth connection of FileOutputStream?) is null")
                                 alert(
-                                    bluetooth.activity!!,
+                                    bluetooth.activity,
                                     "FATAL CONNECTIVITY ERROR",
                                     "FATAL BLUETOOTH ERROR: Database.kt: `it` (bluetooth connection of type FileOutputStream?) is null. Please contact the scouting team to alert them of this error BEFORE exiting the app.",
                                     DialogInterface.OnClickListener {
@@ -94,7 +94,7 @@ class Database {
 
     // Read a file
     private fun readFile(name: String): String {
-        return bluetooth.activity?.openFileInput(name)?.bufferedReader().use {
+        return bluetooth.activity.openFileInput(name)?.bufferedReader().use {
             if (it?.readText() == null) "" else it.readText()
         }
     }
@@ -117,7 +117,7 @@ class Database {
     fun dataSent(data: String) {
         try {
             teamData = JSONArray(data)
-            bluetooth.activity?.openFileOutput("teamData.json", Context.MODE_PRIVATE)?.bufferedWriter().use {
+            bluetooth.activity.openFileOutput("teamData.json", Context.MODE_PRIVATE)?.bufferedWriter().use {
                 it?.write(teamData.toString())
             }
         } catch (e: IOException) {
