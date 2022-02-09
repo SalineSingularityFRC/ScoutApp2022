@@ -103,4 +103,10 @@ class BluetoothClass(a: MainActivity?) {
     fun end() {
         bluetooth.onStop()
     }
+
+    fun isConnected(): Boolean = bluetooth.isConnected
+
+    fun connect() {
+        bluetooth.connectToAddress(macAddr)
+    }
 }
