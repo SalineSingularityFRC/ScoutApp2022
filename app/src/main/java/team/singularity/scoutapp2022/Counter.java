@@ -50,7 +50,7 @@ public class Counter {
     }
 
     Counter(Button add, Button sub, TextView counter) {
-        // Define buttons and textView
+        // Initialize buttons and textView
         this.addBtn = add;
         this.subBtn = sub;
         this.counterTv = counter;
@@ -69,5 +69,12 @@ public class Counter {
                 display();
             }
         });
+    }
+
+    Counter(View view, int counterId) {
+        //TODO: This looks ugly reusing "view.findViewById(counterId)" should fix that
+        this(view.findViewById(counterId).findViewById(R.id.addBtn),
+                view.findViewById(counterId).findViewById(R.id.subBtn),
+                view.findViewById(counterId).findViewById(R.id.counterTv));
     }
 }

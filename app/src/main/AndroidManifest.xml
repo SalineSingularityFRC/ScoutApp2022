@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ScoutApp2022">
         <activity
-            android:name=".Match"
+            android:name=".MatchActivity"
             android:exported="false" />
         <activity
             android:name=".Teams"
