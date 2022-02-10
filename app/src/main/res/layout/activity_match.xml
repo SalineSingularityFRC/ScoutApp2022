@@ -6,19 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".MatchActivity">
 
+    <ImageView
+        android:id="@+id/autonBg"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/Header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Auton"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/autonBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/autonBg"
+        app:layout_constraintTop_toTopOf="@+id/autonBg" />
+
+    <TextView
+        android:id="@+id/taxiTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Taxi"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/taxiCb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/taxiCb" />
+
+    <CheckBox
+        android:id="@+id/taxiCb"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listChoiceIndicatorMultiple"
+        android:button="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autonBg" />
+
     <include
-        android:id="@+id/lowerHubCounter"
+        android:id="@+id/lowerHubCounterAuton"
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </include>
+        app:layout_constraintTop_toBottomOf="@id/taxiCb"/>
 
     <TextView
-        android:id="@+id/lowerHubTv"
+        android:id="@+id/lowerHubTvAuton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
@@ -26,23 +70,22 @@
         android:text="Lower Hub"
         android:textColor="@color/black"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="@+id/lowerHubCounter"
+        app:layout_constraintBottom_toBottomOf="@+id/lowerHubCounterAuton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lowerHubCounter" />
+        app:layout_constraintTop_toTopOf="@+id/lowerHubCounterAuton" />
 
     <include
-        android:id="@+id/upperHubCounter"
+        android:id="@+id/upperHubCounterAuton"
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_margin"
         android:layout_marginEnd="@dimen/text_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounter">
-    </include>
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterAuton"/>
 
     <TextView
-        android:id="@+id/upperHubTv"
+        android:id="@+id/upperHubTvAuton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
@@ -50,9 +93,126 @@
         android:text="Upper Hub"
         android:textColor="@color/black"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="@+id/upperHubCounter"
+        app:layout_constraintBottom_toBottomOf="@+id/upperHubCounterAuton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/upperHubCounter" />
+        app:layout_constraintTop_toTopOf="@+id/upperHubCounterAuton" />
+
+    <ImageView
+        android:id="@+id/teleBg"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/Header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upperHubCounterAuton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Teleop"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/teleBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/teleBg"
+        app:layout_constraintTop_toTopOf="@+id/teleBg" />
+
+    <include
+        android:id="@+id/lowerHubCounterTele"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teleBg"/>
+
+    <TextView
+        android:id="@+id/lowerHubTvTele"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Lower Hub"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lowerHubCounterTele"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lowerHubCounterTele" />
+
+    <include
+        android:id="@+id/upperHubCounterTele"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterTele"/>
+
+    <TextView
+        android:id="@+id/upperHubTvTele"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Upper Hub"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/upperHubCounterTele"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upperHubCounterTele" />
+
+    <Spinner
+        android:id="@+id/monkeyBarThingSp"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/hanger_array"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upperHubCounterTele" />
+
+    <TextView
+        android:id="@+id/monkeyBarThingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Hanger"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/monkeyBarThingSp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/monkeyBarThingSp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="finish and"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/team"
@@ -65,6 +225,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.977" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

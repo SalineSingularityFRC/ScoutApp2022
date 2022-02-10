@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">ScoutApp2022</string>
     <string name="version">should probably use this</string>
+
+    <string-array name="hanger_array">
+        <item>None</item>
+        <item>Low (1st)</item>
+        <item>Mid (2nd)</item>
+        <item>High (3rd)</item>
+        <item>Traversal (4th)</item>
+    </string-array>
 </resources>
