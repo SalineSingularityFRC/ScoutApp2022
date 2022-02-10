@@ -52,22 +52,24 @@ class Teams : AppCompatActivity() {
 
         // iterate over all teams in the database
         // for (int i = 0; i < teamData.length(); i++)
-        for (i in 0 until Database.teamData().length()) {
+        (0 until Database.teamData().length()).forEach {
             val resultsMap = HashMap<String, String>()
 
             // set name and number
-            resultsMap["name"] = getTeamName(i)
-            resultsMap["number"] = "${getTeamNumber(i)}"
+            resultsMap["name"] = getTeamName(it)
+            resultsMap["number"] = "${getTeamNumber(it)}"
             list.add(resultsMap)
         }
 
         // iterate over local teams
-        for (i in 0 until Database.tempTeamData.length()) {
+        /*
+        (0 until Database.tempTeamData().length()).forEach {
             val resultsMap = HashMap<String, String>()
 
             resultsMap["name"] = getLocalTeamName(i)
             resultsMap["number"] = "${getLocalTeamNumber(i)}"
             list.add(resultsMap)
         }
+         */
     }
 }

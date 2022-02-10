@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         val match = findViewById<Button>(R.id.newMatchBtn)
         match.setOnClickListener {
             /* Log.i(tag, "Clicked new match button") */
-
             val teams = Intent(applicationContext, Teams::class.java)
             startActivity(teams)
         }
