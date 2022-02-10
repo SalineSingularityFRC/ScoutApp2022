@@ -19,8 +19,8 @@ class MatchActivity : AppCompatActivity() {
 
         //should probably have it be able to run before adding in more complexity
 
-        val lowerHubCounter = Counter(view, R.id.lowerHubCounter);
-        val upperHubCounter = Counter(view, R.id.upperHubCounter);
+        val lowerHubCounter = Counter(view, R.id.lowerHubCounterAuton);
+        val upperHubCounter = Counter(view, R.id.upperHubCounterAuton);
 
         val team = findViewById<TextView>(R.id.team)
         val number = getIntent().getExtras()!!["Team Number"]

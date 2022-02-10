@@ -10,7 +10,7 @@
         android:id="@+id/autonBg"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@drawable/Header"
+        android:background="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,8 +42,8 @@
 
     <CheckBox
         android:id="@+id/taxiCb"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="?android:attr/listChoiceIndicatorMultiple"
@@ -56,7 +56,7 @@
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taxiCb"/>
@@ -79,8 +79,8 @@
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterAuton"/>
 
@@ -101,8 +101,8 @@
         android:id="@+id/teleBg"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/Header"
+        android:layout_marginTop="16dp"
+        android:background="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +125,7 @@
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/teleBg"/>
@@ -148,7 +148,7 @@
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="@dimen/text_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterTele"/>
@@ -170,9 +170,9 @@
         android:id="@+id/monkeyBarThingSp"
         android:layout_width="140dp"
         android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:entries="@array/hanger_array"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upperHubCounterTele" />
 
@@ -193,7 +193,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="128dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Submit"
         android:textColor="@color/white"
@@ -205,7 +205,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:fontFamily="sans-serif-condensed"
         android:text="finish and"
         android:textColor="@color/gray"
@@ -243,9 +243,10 @@
         app:layout_constraintTop_toBottomOf="@+id/upperHubCounterTele" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/monkeyBarThingSp" />
 
@@ -253,13 +254,11 @@
         android:id="@+id/team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:text="TEAM NAME GOES HERE"
         android:textColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.936"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
