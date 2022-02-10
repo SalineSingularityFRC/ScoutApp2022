@@ -1,5 +1,6 @@
 package team.singularity.scoutapp2022
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var bluetooth: BluetoothClass = BluetoothClass(this)
     var started = false
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,13 +33,10 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.i(tag, "Started MainActivity")
-        if (!started) {
             Log.i(tag, "Setting up bluetooth")
             bluetooth.setup()
             val data = "{\"teamData\":[],\"matchData\":[]}"
             Log.i(tag, "Sending data '$data'")
             bluetooth.send(data)
-            started = true
-        }
     }
 }
