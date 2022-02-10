@@ -42,7 +42,7 @@ class Teams : AppCompatActivity() {
         view.setOnItemClickListener { adapter, view, i, l ->
             /* TODO : make this more direct */
             val teamNumber = (view.findViewById<View>(R.id.teamNumber) as TextView).text.toString()
-            val match = Intent(applicationContext, Match::class.java)
+            val match = Intent(applicationContext, MatchActivity::class.java)
             match.putExtra("Team Number", teamNumber)
             startActivity(match)
             finish()

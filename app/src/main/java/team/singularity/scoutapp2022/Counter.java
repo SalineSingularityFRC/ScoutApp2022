@@ -22,18 +22,18 @@ import android.widget.TextView;
 /// A class that encapsulates two buttons and a text box
 public class Counter {
     private int count = 0;
-    public final Button inc, dec;
-    public final TextView counter;
+    public final Button addBtn, subBtn;
+    public final TextView counterTv;
 
     /// Get count
-    public int get_count() { return this.count; }
+    public int getCount() { return this.count; }
 
     /// Increment count
     public void inc(int a) {
         this.count += a;
     }
 
-    /// Deincrement count
+    /// Decrement count
     public void dec(int a) {
         if (this.count < 1) return;
         this.count -= a;
@@ -41,33 +41,40 @@ public class Counter {
 
     public void setCount(int count) {
         this.count = count;
-        this.counter.setText(String.format("%d",this.count));
+        this.counterTv.setText(this.count);
     }
 
     /// Display count in this.counter
     public void display() {
-        this.counter.setText(String.format("%d", this.count));
+        this.counterTv.setText(this.count);
     }
 
-    Counter(Button inc, Button dec, TextView counter) {
-        // Setup incrementers
-        this.inc = inc;
-        this.dec = dec;
-        this.counter = counter;
+    Counter(Button add, Button sub, TextView counter) {
+        // Initialize buttons and textView
+        this.addBtn = add;
+        this.subBtn = sub;
+        this.counterTv = counter;
 
         // Add listeners to buttons
         // TODO remove boilerplate
-        this.inc.setOnClickListener(new View.OnClickListener() {
+        this.addBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 inc(1);
                 display();
             }
         });
-        this.dec.setOnClickListener(new View.OnClickListener() {
+        this.subBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dec(1);
                 display();
             }
         });
+    }
+
+    Counter(View view, int counterId) {
+        //TODO: This looks ugly reusing "view.findViewById(counterId)" should fix that
+        this(view.findViewById(counterId).findViewById(R.id.addBtn),
+                view.findViewById(counterId).findViewById(R.id.subBtn),
+                view.findViewById(counterId).findViewById(R.id.counterTv));
     }
 }

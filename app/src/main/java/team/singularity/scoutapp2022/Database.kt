@@ -6,6 +6,7 @@ import android.app.Activity
 import android.bluetooth.BluetoothClass
 import android.content.Context
 import android.content.DialogInterface
+import android.system.ErrnoException
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONException
@@ -36,6 +37,7 @@ class Database {
             val data = FileInputStream(filePath).bufferedReader().use { it.readText() }
             Log.i(tag, "Read data: $data")
             return JSONArray(data)
+
         }
     }
 
@@ -69,7 +71,7 @@ class Database {
                                     "FATAL CONNECTIVITY ERROR",
                                     "FATAL BLUETOOTH ERROR: Database.kt: `it` (bluetooth connection of type FileOutputStream?) is null. Please contact the scouting team to alert them of this error BEFORE exiting the app.",
                                     DialogInterface.OnClickListener {
-                                        // TODO : recover?
+                                        /* TODO : recover? */
                                             _, _ ->
                                         { }
                                     }
@@ -194,14 +196,10 @@ fun send() {
     try {
         Database.teamData = JSONArray(data)
         val a = Database.bluetooth.activity
-        if (a != null) {
-            val fos: FileOutputStream =
-                a.openFileOutput("teamData", 0) // MODE_PRIVATE
-            fos.write(Database.teamData.toString().toByteArray())
-            fos.close()
-        } else {
-            Log.e(tag, "Bluetooth activity is null!")
-        }
+        val fos: FileOutputStream =
+            a.openFileOutput("teamData", 0) // MODE_PRIVATE
+        fos.write(Database.teamData.toString().toByteArray())
+        fos.close()
     } catch (e: JSONException) {
         e.printStackTrace()
         return

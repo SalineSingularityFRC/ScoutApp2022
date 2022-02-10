@@ -4,7 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Match">
+    tools:context=".MatchActivity">
+
+    <include
+        android:id="@+id/lowerHubCounter"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </include>
+
+    <TextView
+        android:id="@+id/lowerHubTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Lower Hub"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lowerHubCounter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lowerHubCounter" />
+
+    <include
+        android:id="@+id/upperHubCounter"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounter">
+    </include>
+
+    <TextView
+        android:id="@+id/upperHubTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Upper Hub"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/upperHubCounter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upperHubCounter" />
 
     <TextView
         android:id="@+id/team"
@@ -18,98 +66,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.977" />
 
-    <TextView
-        android:id="@+id/autoLowerHubText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Auton Lower Hub"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066" />
 
-    <Button
-        android:id="@+id/autoLowerHubInc"
-        android:layout_width="53dp"
-        android:layout_height="43dp"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/autoLowerHubCount"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
-
-    <TextView
-        android:id="@+id/autoLowerHubCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/autoLowerHubText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
-
-    <Button
-        android:id="@+id/autoLowerHubDec"
-        android:layout_width="51dp"
-        android:layout_height="43dp"
-        android:text="-"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/autoLowerHubCount"
-        app:layout_constraintHorizontal_bias="0.798"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
-
-    <TextView
-        android:id="@+id/autoUpperHubText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Auton Upper Hub"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoLowerHubText"
-        app:layout_constraintVertical_bias="0.091" />
-
-    <Button
-        android:id="@+id/autoUpperHubDec"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:text="-"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/autoUpperHubCount"
-        app:layout_constraintHorizontal_bias="0.795"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoLowerHubDec"
-        app:layout_constraintVertical_bias="0.043" />
-
-    <Button
-        android:id="@+id/autoUpperHubInc"
-        android:layout_width="52dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="44dp"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/autoUpperHubCount"
-        app:layout_constraintTop_toBottomOf="@+id/autoLowerHubInc"
-        app:layout_constraintVertical_bias="0.046" />
-
-    <TextView
-        android:id="@+id/autoUpperHubCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/autoUpperHubText"
-        app:layout_constraintTop_toBottomOf="@+id/autoLowerHubCount"
-        app:layout_constraintVertical_bias="0.079" />
 </androidx.constraintlayout.widget.ConstraintLayout>
