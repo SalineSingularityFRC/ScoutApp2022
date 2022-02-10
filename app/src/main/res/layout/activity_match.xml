@@ -44,7 +44,7 @@
         android:id="@+id/taxiCb"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="?android:attr/listChoiceIndicatorMultiple"
         android:button="@null"
@@ -101,7 +101,7 @@
         android:id="@+id/teleBg"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/Header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -125,7 +125,7 @@
         layout="@layout/content_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/teleBg"/>
@@ -169,7 +169,7 @@
     <Spinner
         android:id="@+id/monkeyBarThingSp"
         android:layout_width="140dp"
-        android:layout_height="48dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:entries="@array/hanger_array"
@@ -208,17 +208,53 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-condensed"
         android:text="finish and"
-        android:textColor="@color/black"
+        android:textColor="@color/gray"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/lowerHubCounterAuton"
+        app:layout_constraintTop_toBottomOf="@+id/taxiCb" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/upperHubCounterAuton"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterAuton" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/upperHubCounterTele"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterTele" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/monkeyBarThingSp"
+        app:layout_constraintTop_toBottomOf="@+id/upperHubCounterTele" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@+id/monkeyBarThingSp" />
 
     <TextView
         android:id="@+id/team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEAM NAME GOES HERE"
+        android:textColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.936"
