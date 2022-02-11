@@ -182,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/text_margin"
         android:fontFamily="sans-serif-condensed"
-        android:text="Hanger"
+        android:text="Hangar"
         android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/monkeyBarThingSp"

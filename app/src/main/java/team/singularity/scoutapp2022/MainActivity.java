@@ -2,6 +2,7 @@ package team.singularity.scoutapp2022;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,7 @@ public final class MainActivity extends AppCompatActivity {
         Button newMatchBtn = findViewById(R.id.newMatchBtn);
         TextView versionTv = findViewById(R.id.version);
 
-        //TODO: don't hardcode that, something broke when translated to java
-        versionTv.setText((CharSequence)"version 0.0.2");
+        versionTv.setText((CharSequence)"version " + UtilKt.VERSION);
 
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override
