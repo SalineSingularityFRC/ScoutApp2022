@@ -26,7 +26,7 @@ public final class MainActivity extends AppCompatActivity {
         Button newMatchBtn = findViewById(R.id.newMatchBtn);
         TextView versionTv = findViewById(R.id.version);
 
-        versionTv.setText((CharSequence)"version " + UtilKt.VERSION);
+        versionTv.setText((CharSequence)"version " + Util.VERSION);
 
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override

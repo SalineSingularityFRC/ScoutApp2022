@@ -66,7 +66,7 @@ class Database {
                             Log.i(tag, "Writing to file")
                             if (it != null) it.write("{[]}".toByteArray()) else {
                                 Log.e(tag, "it (bluetooth connection of FileOutputStream?) is null")
-                                alert(
+                                Util.alert(
                                     bluetooth.activity,
                                     "FATAL CONNECTIVITY ERROR",
                                     "FATAL BLUETOOTH ERROR: Database.kt: `it` (bluetooth connection of type FileOutputStream?) is null. Please contact the scouting team to alert them of this error BEFORE exiting the app.",
