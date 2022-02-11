@@ -5,10 +5,9 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import org.jetbrains.annotations.Nullable;
 
 public final class MatchActivity extends AppCompatActivity {
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_match);
 
