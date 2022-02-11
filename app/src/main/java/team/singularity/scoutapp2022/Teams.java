@@ -70,11 +70,24 @@ public final class Teams extends AppCompatActivity {
         // bluetooth code
 
         // iterate over all teams in the database
-        for (int i = 0; i < Database.Companion.teamData.length(); i++){
+        for (int i = 0; i < Database.teamData.length(); i++) {
+
+            // set name and number
             HashMap resultsMap = new HashMap();
             ((Map)resultsMap).put("name", DatabaseKt.getTeamName(i));
             ((Map)resultsMap).put("number", String.valueOf(DatabaseKt.getTeamNumber(i)));
             list.add(resultsMap);
         }
+
+        // iterate over local teams
+        /*
+        (0 until Database.tempTeamData().length()).forEach {
+            val resultsMap = HashMap<String, String>()
+
+            resultsMap["name"] = getLocalTeamName(i)
+            resultsMap["number"] = "${getLocalTeamNumber(i)}"
+            list.add(resultsMap)
+        }
+         */
     }
 }
