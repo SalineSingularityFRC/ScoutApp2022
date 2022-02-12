@@ -7,9 +7,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public final class MatchActivity extends AppCompatActivity {
+
+    private static final String TAG = "Match Activity";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_match);
+
+        //if (/*if this stuff is null*/) {
+        //    startActivity(); //go back to the last activity
+        //}
 
         final ViewGroup view = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
@@ -19,7 +26,8 @@ public final class MatchActivity extends AppCompatActivity {
         Counter upperHubCounterAuton = new Counter(view, R.id.upperHubCounterAuton);
 
         TextView team = (TextView) this.findViewById(R.id.team);
-        int number = (int)this.getIntent().getExtras().get("Team Number");
+        //casting to an int didn't seem to work
+        int number = Integer.parseInt(String.valueOf(this.getIntent().getExtras().get("Team Number")));
         Log.i("7G7 Bluetooth", "Team Number: " + number);
         team.setText(number);
     }

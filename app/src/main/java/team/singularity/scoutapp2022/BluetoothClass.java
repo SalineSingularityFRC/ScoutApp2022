@@ -8,29 +8,27 @@ import bluetooth.Bluetooth;
 import bluetooth.CommunicationCallback;
 
 public class BluetoothClass {
-    private final Bluetooth bluetooth;
+    private final Bluetooth BLUETOOTH;
     public MainActivity activity;
     private boolean setup = false;
-    private final Handler handler = new Handler();
-    private static final String tag = "7G7 Bluetooth";
-    private static String macAddress;
-    private static final String match = "B8:27:EB:E8:64:53"; /* Put the bluetooth address of you Pi server here */
+    private final Handler HANDLER = new Handler();
+    private static final String TAG = "7G7 Bluetooth";
     private String pendingData="";
     private final CommunicationCallback CCB;
 
     public BluetoothClass(MainActivity a) {
         activity=a;
-        bluetooth = new Bluetooth(activity);
+        BLUETOOTH = new Bluetooth(activity);
         CCB = new CommunicationCallback() {
             @Override
             public void onConnect(BluetoothDevice device) {
-                Log.i(tag, "Connected to device " + device.getName() + " at " + device.getAddress() + "!");
-                bluetooth.send(pendingData);
+                Log.i(TAG, "Connected to device " + device.getName() + " at " + device.getAddress() + "!");
+                BLUETOOTH.send(pendingData);
             }
 
             @Override
             public void onDisconnect(BluetoothDevice device, String message) {
-                Log.i(tag, "Disconnected from device " + device.getName() + " at " + device.getAddress() + "!");
+                Log.i(TAG, "Disconnected from device " + device.getName() + " at " + device.getAddress() + "!");
                 if (pendingData.length() != 0) {
                     reconnect();
                 }
@@ -40,46 +38,46 @@ public class BluetoothClass {
             public void onMessage(String message) {
                 pendingData = "";
                 DatabaseClass.dataSent(message);
-                Log.i(tag, "Data transfer complete!");
+                Log.i(TAG, "Data transfer complete!");
             }
 
             @Override
             public void onError(String message) {
-                Log.e(tag, "Generic error: " + message);
+                Log.e(TAG, "Generic error: " + message);
             }
 
             @Override
             public void onConnectError(BluetoothDevice device, String message) {
-                Log.e(tag, "Caught connection error: " + message);
+                Log.e(TAG, "Caught connection error: " + message);
                 reconnect();
             }
         };
-        bluetooth.setCommunicationCallback(CCB);
+        BLUETOOTH.setCommunicationCallback(CCB);
     }
 
     public void setup(){
         if(!setup) {
-            bluetooth.onStart();
+            BLUETOOTH.onStart();
         }
-        if(!bluetooth.isEnabled()){
-            bluetooth.enable();
+        if(!BLUETOOTH.isEnabled()){
+            BLUETOOTH.enable();
         }
         setup=true;
     }
 
     private void reconnect(){
-        handler.postDelayed(new Runnable() {
+        HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {
-                bluetooth.connectToAddress(match);
+                BLUETOOTH.connectToAddress(Util.PI_MAC_ADDRESS);
             }
         },3000);
     }
 
     public void send(String data){
-        Log.i(tag,"Entered the send method in bluetooth");
+        Log.i(TAG,"Entered the send method in bluetooth");
         if(pendingData.length()==0)
-            bluetooth.connectToAddress(match);
+            BLUETOOTH.connectToAddress(Util.PI_MAC_ADDRESS);
         //pendingData+=data;
         pendingData=data;
 
@@ -87,21 +85,21 @@ public class BluetoothClass {
 
     public void send_byte(byte[] data) {
         if (pendingData.length() == 0)
-            bluetooth.connectToAddress(match);
+            BLUETOOTH.connectToAddress(Util.PI_MAC_ADDRESS);
 
         pendingData += new String(data);
-        Log.i(tag, "Disconnecting");
-        bluetooth.disconnect();
+        Log.i(TAG, "Disconnecting");
+        BLUETOOTH.disconnect();
     }
 
     /// Set the pending data without actually sending to the pi
     public void set_pending_data(String data) {
-        if (this.pendingData.length() == 0) bluetooth.connectToAddress(match);
+        if (this.pendingData.length() == 0) BLUETOOTH.connectToAddress(Util.PI_MAC_ADDRESS);
         this.pendingData = data;
     }
 
     public void end(){
-        bluetooth.onStop();
+        BLUETOOTH.onStop();
     }
 
 }

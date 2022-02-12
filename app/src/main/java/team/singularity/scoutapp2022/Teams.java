@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class Teams extends AppCompatActivity {
-    private final String tag = "Teams";
+    private final String TAG = "Teams";
     private ListView view;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public final class Teams extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l) {
                 // start MatchInformation page
-                Log.i(Teams.this.tag, "Clicked teams view");
+                Log.i(Teams.this.TAG, "Clicked teams view");
             }
         });
     }
@@ -70,24 +70,35 @@ public final class Teams extends AppCompatActivity {
         // bluetooth code
 
         // iterate over all teams in the database
-        for (int i = 0; i < DatabaseClass.teamData.length(); i++) {
+        //TODO: this is null for some reason
+        if (DatabaseClass.teamData != null) {
+            for (int i = 0; i < DatabaseClass.teamData.length(); i++) {
 
-            // set name and number
+                // set name and number
+                HashMap resultsMap = new HashMap();
+                ((Map) resultsMap).put("name", DatabaseClass.getTeamName(i));
+                ((Map) resultsMap).put("number", String.valueOf(DatabaseClass.getTeamNumber(i)));
+                list.add(resultsMap);
+            }
+
+            // iterate over local teams
+            /*
+            (0 until Database.tempTeamData().length()).forEach {
+                val resultsMap = HashMap<String, String>()
+
+                resultsMap["name"] = getLocalTeamName(i)
+                resultsMap["number"] = "${getLocalTeamNumber(i)}"
+                list.add(resultsMap)
+            }
+            */
+        } else{
+            //display an error without crashing
             HashMap resultsMap = new HashMap();
-            ((Map)resultsMap).put("name", DatabaseClass.getTeamName(i));
-            ((Map)resultsMap).put("number", String.valueOf(DatabaseClass.getTeamNumber(i)));
+            ((Map) resultsMap).put("name", "Database.teamData is NULL!");
+            ((Map) resultsMap).put("number", "The PI probably isn't connected");
             list.add(resultsMap);
-        }
 
-        // iterate over local teams
-        /*
-        (0 until Database.tempTeamData().length()).forEach {
-            val resultsMap = HashMap<String, String>()
-
-            resultsMap["name"] = getLocalTeamName(i)
-            resultsMap["number"] = "${getLocalTeamNumber(i)}"
-            list.add(resultsMap)
+            Log.e(TAG, "Database.teamData is NULL!");
         }
-         */
     }
 }

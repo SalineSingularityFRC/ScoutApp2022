@@ -24,7 +24,6 @@ public class DatabaseClass {
     public static JSONArray teamData;
     public static String tag = "7G7 Bluetooth";
 
-
     public static void setup(BluetoothClass bluetooth) {
         DatabaseClass.bluetooth = bluetooth;
 

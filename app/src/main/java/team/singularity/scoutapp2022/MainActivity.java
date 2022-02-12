@@ -2,7 +2,6 @@ package team.singularity.scoutapp2022;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import bluetooth.Bluetooth;
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.Nullable;
 
 public final class MainActivity extends AppCompatActivity {
