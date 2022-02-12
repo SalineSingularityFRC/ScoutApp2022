@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public final class MatchActivity extends AppCompatActivity {
 
     private static final String TAG = "Match Activity";
+    EditText matchEt;
     CheckBox taxiCb;
     Counter  lowerHubCounterAuton;
     Counter  upperHubCounterAuton;
@@ -35,6 +37,7 @@ public final class MatchActivity extends AppCompatActivity {
 
         final ViewGroup VIEW = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
+        matchEt              = VIEW.findViewById(R.id.matchEt);
         taxiCb               = VIEW.findViewById(R.id.taxiCb);
         lowerHubCounterAuton = new Counter(VIEW.findViewById(R.id.lowerHubCounterAuton));
         upperHubCounterAuton = new Counter(VIEW.findViewById(R.id.upperHubCounterAuton));
@@ -57,7 +60,7 @@ public final class MatchActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //write data to pi here:
+                //TODO: write data to pi here:
 
                 //go back to MainActivity
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
