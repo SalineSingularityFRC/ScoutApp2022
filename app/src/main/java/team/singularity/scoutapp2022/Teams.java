@@ -70,12 +70,12 @@ public final class Teams extends AppCompatActivity {
         // bluetooth code
 
         // iterate over all teams in the database
-        for (int i = 0; i < Database.teamData.length(); i++) {
+        for (int i = 0; i < DatabaseClass.teamData.length(); i++) {
 
             // set name and number
             HashMap resultsMap = new HashMap();
-            ((Map)resultsMap).put("name", DatabaseKt.getTeamName(i));
-            ((Map)resultsMap).put("number", String.valueOf(DatabaseKt.getTeamNumber(i)));
+            ((Map)resultsMap).put("name", DatabaseClass.getTeamName(i));
+            ((Map)resultsMap).put("number", String.valueOf(DatabaseClass.getTeamNumber(i)));
             list.add(resultsMap);
         }
 

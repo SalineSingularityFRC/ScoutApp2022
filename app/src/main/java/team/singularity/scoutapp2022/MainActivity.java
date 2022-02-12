@@ -10,15 +10,22 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import bluetooth.Bluetooth;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.Nullable;
 
 public final class MainActivity extends AppCompatActivity {
     final String TAG = "MainActivity";
-    Database database;
-    private final BluetoothClass BLUETOOTH = new BluetoothClass(this);
+    DatabaseClass database;
+    private final BluetoothClass BLUETOOTH;
 
+    {
+        BLUETOOTH = new BluetoothClass(this);
+    }
+
+    @SuppressLint("SetTextI18n")
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
