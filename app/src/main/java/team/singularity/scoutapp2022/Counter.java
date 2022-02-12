@@ -17,64 +17,68 @@ package team.singularity.scoutapp2022;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /// A class that encapsulates two buttons and a text box
 public class Counter {
     private int count = 0;
-    public final Button addBtn, subBtn;
+    public final ImageButton addBtn, subBtn;
     public final TextView counterTv;
 
     /// Get count
-    public int getCount() { return this.count; }
+    public int getCount() {
+        return count;
+    }
 
     /// Increment count
     public void inc(int a) {
-        this.count += a;
+        count += a;
+        display();
     }
 
     /// Decrement count
     public void dec(int a) {
-        if (this.count < 1) return;
-        this.count -= a;
+        if (count < 1) return;
+        count -= a;
+        display();
     }
 
-    public void setCount(int count) {
-        this.count = count;
-        this.counterTv.setText(this.count);
+    public void setCount(int i) {
+        count = i;
+        display();
     }
 
-    /// Display count in this.counter
+    /// Display count in counter
     public void display() {
-        this.counterTv.setText(this.count);
+        counterTv.setText(String.valueOf(count));
     }
 
-    Counter(Button add, Button sub, TextView counter) {
+    Counter(ImageButton add, ImageButton sub, TextView counter) {
         // Initialize buttons and textView
         this.addBtn = add;
         this.subBtn = sub;
-        this.counterTv = counter;
+        counterTv = counter;
 
         // Add listeners to buttons
         // TODO remove boilerplate
         this.addBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 inc(1);
-                display();
             }
         });
+
         this.subBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dec(1);
-                display();
             }
         });
     }
 
-    Counter(View view, int counterId) {
+    Counter(View counter) {
         //TODO: This looks ugly reusing "view.findViewById(counterId)" should fix that
-        this(view.findViewById(counterId).findViewById(R.id.addBtn),
-                view.findViewById(counterId).findViewById(R.id.subBtn),
-                view.findViewById(counterId).findViewById(R.id.counterTv));
+        this(counter.findViewById(R.id.addBtn),
+                counter.findViewById(R.id.subBtn),
+                counter.findViewById(R.id.counterTv));
     }
 }
