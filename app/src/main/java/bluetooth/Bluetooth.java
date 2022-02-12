@@ -42,7 +42,7 @@ public class Bluetooth {
 
     public Bluetooth(Activity activity){
         this.activity = activity;
-        this.uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+        this.uuid = UUID.fromString("d7d726e3-8cab-4df2-9216-92a5bd8e22e5");
         this.communicationCallback = null;
         this.discoveryCallback = null;
         this.bluetoothCallback = null;
