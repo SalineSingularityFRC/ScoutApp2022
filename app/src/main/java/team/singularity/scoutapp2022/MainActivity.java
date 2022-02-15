@@ -37,6 +37,18 @@ public final class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(teams);
             }
         });
+
+        /*(Button)(findViewById(R.id.viewData)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.alert(this, "Not implemented!", "Go away!!", new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ;
+                    }
+                })
+            }
+        });*/
     }
 
     protected void onStart() {

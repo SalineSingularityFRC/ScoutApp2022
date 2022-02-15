@@ -1,5 +1,6 @@
 package team.singularity.scoutapp2022;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import androidx.appcompat.app.AlertDialog;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class Util {
 
-    public static final String VERSION = "0.0.2";
+    public static final String VERSION = "0.0.3";
     public static final String PI_MAC_ADDRESS = "B8:27:EB:E8:64:53";
 
     public static final void alert(AppCompatActivity obj, String title, String message, OnClickListener listener) {
@@ -28,3 +29,4 @@ public final class Util {
         alert.show();
     }
 }
+

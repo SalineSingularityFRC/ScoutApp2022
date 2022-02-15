@@ -124,7 +124,7 @@ public class DatabaseClass {
     public static void dataSent(String data) {
         try {
             teamData = new JSONArray(data);
-            FileOutputStream fos = bluetooth.activity.openFileOutput("teamData", bluetooth.activity.MODE_PRIVATE);
+            FileOutputStream fos = App.getContext().openFileOutput("teamData", Context.MODE_PRIVATE);
             fos.write(teamData.toString().getBytes());
             fos.close();
         } catch (JSONException | IOException e) {
