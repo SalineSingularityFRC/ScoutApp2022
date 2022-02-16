@@ -5,6 +5,7 @@ package team.singularity.scoutapp2022;
  */
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import org.json.*;
@@ -22,36 +23,36 @@ public class DatabaseClass {
     public static JSONArray robotMatchData = new JSONArray();
     private static JSONArray tempTeamData = new JSONArray();
     public static JSONArray teamData;
-    public static String tag = "7G7 Bluetooth";
+    public static String TAG = "Database Class";
 
-    public static void setup(BluetoothClass bluetooth) {
-        DatabaseClass.bluetooth = bluetooth;
+    public static void setup(BluetoothClass b) {
+        DatabaseClass.bluetooth = b;
 
         ArrayList jsonObjectArray = new ArrayList();
         String currentJSONString = "";
-
+/*///
         try {
             FileInputStream fis = new FileInputStream("teamData.json");
             //FileInputStream fis = bluetooth.activity.openFileInput("teamData");
             int dat = fis.read();
-            Log.i(tag, String.format("Dat: %d :: Str: %s", dat, fis.toString()));
+            Log.i(TAG, String.format("Dat: %d :: Str: %s", dat, fis.toString()));
             teamData = new JSONArray(dat);
             /*while( (currentJSONString = fis.read()) != null) {
                 JSONObject currentObject = new JSONObject(currentJSONString);
 
                 jsonObjectArray.add(currentObject);
-            }*/
-            Log.i(tag, "finished the fis.read()");
+            }*//*///
+            Log.i(TAG, "finished the fis.read()");
             fis.close();
         } catch (FileNotFoundException e) {
-            Log.e(tag, "Got exception!");
+            Log.e(TAG, "Got exception!");
             try {
                 FileOutputStream fos = bluetooth.activity.openFileOutput("teamData.json", Context.MODE_PRIVATE);
                 //fos.write("".getBytes());
                 fos.close();
                 FileInputStream fis = bluetooth.activity.openFileInput("teamData.json");
                 int dat = fis.read();
-                Log.i(tag, String.format("Data: %d :: String: %s", dat, fis.toString()));
+                Log.i(TAG, String.format("Data: %d :: String: %s", dat, fis.toString()));
                 teamData = new JSONArray(fis.read());
                 fis.close();
             } catch (IOException | JSONException e1) {
@@ -61,8 +62,8 @@ public class DatabaseClass {
 
         } catch (JSONException | IOException e) {
             e.printStackTrace();
-            Log.i(tag, "caught JSONException");
-        }
+            Log.i(TAG, "caught JSONException");
+        }///*/
     }
 
     public static void makeTeam(int teamNumber, String teamName) {
@@ -95,32 +96,6 @@ public class DatabaseClass {
         return "Error";
     }
 
-    public static int getTeamDatabaseLength() {
-        return teamData.length();
-    }
-
-    public static int getLocalTeamNumber(int index) {
-        try {
-            return tempTeamData.getJSONObject(index).getInt("team");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static String getLocalTeamName(int index) {
-        try {
-            return tempTeamData.getJSONObject(index).getString("name");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return "Error";
-    }
-
-    public static int getLocalTeamDatabaseLength() {
-        return tempTeamData.length();
-    }
-
     public static void dataSent(String data) {
         try {
             teamData = new JSONArray(data);
@@ -137,258 +112,51 @@ public class DatabaseClass {
     }
 
     private static void send() {
-        bluetooth.send("{\"matchData\":" + robotMatchData.toString() + ",\"teamData\":" + tempTeamData.toString() + "}");
-        Log.i(tag, "Sent data " + robotMatchData.toString());
+        if (bluetooth == null) {
+            Log.e(TAG, "BLUETOOTH IS NULL! (seems like an issue)");
+        } else {
+            Log.i(TAG, "Sending data " + robotMatchData.toString());
+            bluetooth.send("{\"matchData\":" + robotMatchData.toString() + ",\"teamData\":[]}");
+            Log.i(TAG, "Sent data");
+        }
 
-        // For the newest and greatest SSSS.py
+        // For the newest and greatest SSSS.py (newest, don't know about greatest)
         //bluetooth.send_byte(new byte[] {'\0'});
     }
 
-    public static void createRobotMatch(int teamNumber, String match, boolean onBlue) {
+    public static void createRobotMatch(double version, long time, int matchNum, int teamNum,
+                                        boolean isBlue, int startingPos, boolean taxi, 
+                                        int autoLowerHub, int autoUpperHub, int teleLowerHub, 
+                                        int teleUpperHub, int hangar) {
         try {
-            tempRobotMatchData = new JSONObject("{" +
-                    "\"team\":\"" + teamNumber + "\"," +
-                    "\"matchID\":\"" + match + "\"," +
-                    "\"onBlue\":\"" + onBlue + "\"," +
-                    "\"startingPos\":\"Left\"," +
-                    "\"autonMove\":\"false\"," +
-                    "\"autonBottom\":\"0\"," +
-                    "\"autonOuter\":\"0\"," +
-                    "\"autonInner\":\"0\"," +
-                    "\"teleopBottom\":\"0\"," +
-                    "\"teleopOuter\":\"0\"," +
-                    "\"teleopInner\":\"0\"," +
-                    "\"rotationControl\":\"false\"," +
-                    "\"positionControl\":\"false\"," +
-                    "\"hang\":\"false\"," +
-                    "\"level\":\"false\"," +
-                    "\"floorCollection\":\"false\"," +
-                    "\"trench\":\"false\"," +
-                    "\"upperBay\":\"0\"," +
-                    "\"lowerBay\":\"0\"," +
-                    "\"parking\":\"false\"" +
-                    "}");
+            tempRobotMatchData = new JSONObject();
+
+            tempRobotMatchData.put("version", version);
+            tempRobotMatchData.put("time", time);
+            tempRobotMatchData.put("matchNum", matchNum);
+            tempRobotMatchData.put("teamNum", teamNum);
+            tempRobotMatchData.put("isBlue", isBlue);
+            tempRobotMatchData.put("startingPos", startingPos);
+            tempRobotMatchData.put("taxi", taxi);
+            tempRobotMatchData.put("autoLowerHub", autoLowerHub);
+            tempRobotMatchData.put("autoUpperHub", autoUpperHub);
+            tempRobotMatchData.put("teleLowerHub", teleLowerHub);
+            tempRobotMatchData.put("teleUpperHub", teleUpperHub);
+            tempRobotMatchData.put("hanger", hangar);
+
+            //DatabaseClass.send();
         } catch (JSONException e) {
-            Log.e(tag, "Failed to create robot match");
-            e.printStackTrace();
-        }
-    }
-
-    public static void setStartingPos(String pos) {
-        try {
-            tempRobotMatchData.put("startingPos", pos);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setAutonMove(boolean move) {
-        try {
-            tempRobotMatchData.put("autonMove", Boolean.toString(move));
-        } catch (JSONException e) {
+            Log.e(TAG, "Failed to create robot match");
             e.printStackTrace();
         }
 
-    }
-
-    public static void setAutonBottom(int num) {
-        try {
-            tempRobotMatchData.put("autonBottom", Integer.toString(num));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getAutonBottom() {
-        try {
-            return tempRobotMatchData.getInt("autonBottom");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setAutonOuter(int num) {
-        try {
-            tempRobotMatchData.put("autonOuter",Integer.toString(num));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getAutonOuter() {
-        try {
-            return tempRobotMatchData.getInt("autonOuter");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setAutonInner(int num) {
-        try {
-            tempRobotMatchData.put("autonInner",Integer.toString(num));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getAutonInner() {
-        try {
-            return tempRobotMatchData.getInt("autonInner");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setTeleopBottom(int num) {
-        try {
-            tempRobotMatchData.put("teleopBottom", Integer.toString(num));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getTeleopBottom() {
-        try {
-            return tempRobotMatchData.getInt("teleopBottom");
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setTeleopOuter(int num) {
-        try {
-            tempRobotMatchData.put("teleopOuter", Integer.toString(num));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getTeleopOuter() {
-        try {
-            return tempRobotMatchData.getInt("teleopOuter");
-        } catch(JSONException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setTeleopInner(int num) {
-        try {
-            tempRobotMatchData.put("teleopInner", Integer.toString(num));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getTeleopInner() {
-        try {
-            return tempRobotMatchData.getInt("teleopInner");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setRotationControl(boolean rot) {
-        try {
-            tempRobotMatchData.put("rotationControl", Boolean.toString(rot));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setPositionControl(boolean pos) {
-        try {
-            tempRobotMatchData.put("positionControl", Boolean.toString(pos));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void setParking(boolean parking) {
-        try {
-            tempRobotMatchData.put("parking", Boolean.toString(parking));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-    public static void setHang(boolean hang) {
-        try {
-            tempRobotMatchData.put("hang", Boolean.toString(hang));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setLevel(boolean lvl) {
-        try {
-            tempRobotMatchData.put("level", Boolean.toString(lvl));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setFloorCollection(boolean col) {
-        try {
-            tempRobotMatchData.put("floorCollection", Boolean.toString(col));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setTrench(boolean cap) {
-        try {
-            tempRobotMatchData.put("trench", Boolean.toString(cap));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setUpperBay(int num) {
-        try {
-            tempRobotMatchData.put("upperBay", Integer.toString(num));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getUpperBay() {
-        try {
-            return tempRobotMatchData.getInt("upperBay");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void setLowerBay(int num) {
-        try {
-            tempRobotMatchData.put("lowerBay", Integer.toString(num));
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int getLowerBay() {
-        try {
-            return tempRobotMatchData.getInt("lowerBay");
-        } catch(JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static void finishMatch(){
         if(tempRobotMatchData==null){
-            Log.e(tag, "tempRobotMatchData is null. Weird.");
+            Log.e(TAG, "tempRobotMatchData is null. Weird.");
             return;
         }
         robotMatchData.put(tempRobotMatchData);
-        tempRobotMatchData=null;
+        Log.i(TAG, robotMatchData.toString());
         DatabaseClass.send();
+        tempRobotMatchData=null;
     }
 }

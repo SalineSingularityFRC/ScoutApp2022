@@ -70,7 +70,6 @@ public final class Teams extends AppCompatActivity {
         // bluetooth code
 
         // iterate over all teams in the database
-        //TODO: this is null for some reason
         if (DatabaseClass.teamData != null) {
             for (int i = 0; i < DatabaseClass.teamData.length(); i++) {
 
@@ -91,7 +90,7 @@ public final class Teams extends AppCompatActivity {
                 list.add(resultsMap)
             }
             */
-        } else{
+        } else {
             //display an error without crashing
             HashMap resultsMap = new HashMap();
             ((Map) resultsMap).put("name", "Database.teamData is NULL!");

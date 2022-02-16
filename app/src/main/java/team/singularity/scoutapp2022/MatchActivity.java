@@ -13,6 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.Instant;
+import java.util.Date;
+
 public final class MatchActivity extends AppCompatActivity {
 
     private static final String TAG = "Match Activity";
@@ -60,8 +63,16 @@ public final class MatchActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: write data to pi here:
-
+                //write data to pi
+                //Eh, it just goes off for a bit
+                try {
+                    Integer.parseInt(number);
+                } catch (NumberFormatException nfe) {
+                    Log.e(TAG, "Number string is not numeric");
+                    number = "-1";
+                }
+                //TODO: isBlue and startingPos are hard coded, should prolly fix that
+                DatabaseClass.createRobotMatch(Util.BLUETOOTH_VERSION, System.currentTimeMillis() / 1000L, Integer.parseInt(matchEt.getText().toString()), Integer.parseInt(number), true, -1, taxiCb.isChecked(), lowerHubCounterAuton.getCount(), upperHubCounterAuton.getCount(), lowerHubCounterTele.getCount(), upperHubCounterTele.getCount(), hangarSp.getSelectedItemPosition());
                 //go back to MainActivity
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }

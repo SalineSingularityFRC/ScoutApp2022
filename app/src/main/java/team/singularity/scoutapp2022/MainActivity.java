@@ -56,6 +56,7 @@ public final class MainActivity extends AppCompatActivity {
         Log.i(TAG, "Started MainActivity");
         Log.i(TAG, "Setting up bluetooth");
         BLUETOOTH.setup();
+        DatabaseClass.setup(BLUETOOTH);
         String data = "{\"teamData\":[],\"matchData\":[]}";
         Log.i(TAG, "Sending data '" + data + '\'');
         BLUETOOTH.send(data);
