@@ -1,6 +1,5 @@
 package team.singularity.scoutapp2022;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,17 +13,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import kotlin.Metadata;
-import kotlin.collections.IntIterator;
-import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.RangesKt;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public final class Teams extends AppCompatActivity {
+public final class TeamsActivity extends AppCompatActivity {
     private final String TAG = "Teams";
     private ListView view;
 
@@ -38,7 +30,7 @@ public final class Teams extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l) {
                 // start MatchInformation page
-                Log.i(Teams.this.TAG, "Clicked teams view");
+                Log.i(TeamsActivity.this.TAG, "Clicked teams view");
             }
         });
     }
@@ -60,7 +52,7 @@ public final class Teams extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String teamNumber = ((TextView)findViewById(R.id.teamNumber)).getText().toString();
-                Intent match = new Intent(Teams.this.getApplicationContext(), MatchActivity.class);
+                Intent match = new Intent(TeamsActivity.this.getApplicationContext(), MatchActivity.class);
                 match.putExtra("Team Number", teamNumber);
                 startActivity(match);
                 finish();

@@ -1,5 +1,6 @@
 package bluetooth;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -9,7 +10,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.nfc.Tag;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import team.singularity.scoutapp2022.MainActivity;
+
 /**
  * Created by Omar on 14/07/2015.
  */
@@ -28,6 +35,8 @@ public class Bluetooth {
 
     private Activity activity;
     private UUID uuid;
+
+    private Context context;
 
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothSocket socket;
@@ -40,8 +49,9 @@ public class Bluetooth {
     private BluetoothCallback bluetoothCallback;
     private boolean connected;
 
-    public Bluetooth(Activity activity){
+    public Bluetooth(Activity activity) {
         this.activity = activity;
+        context = (Context)activity;
         this.uuid = UUID.fromString("d7d726e3-8cab-4df2-9216-92a5bd8e22e5");
         this.communicationCallback = null;
         this.discoveryCallback = null;
@@ -49,7 +59,7 @@ public class Bluetooth {
         this.connected = false;
     }
 
-    public Bluetooth(Activity activity, UUID uuid){
+    public Bluetooth(Activity activity, UUID uuid) {
         this.activity = activity;
         this.uuid = uuid;
         this.communicationCallback = null;
@@ -58,50 +68,50 @@ public class Bluetooth {
         this.connected = false;
     }
 
-    public void onStart(){
+    public void onStart() {
         this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         activity.registerReceiver(bluetoothReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
     }
 
-    public void onStop(){
+    public void onStop() {
         activity.unregisterReceiver(bluetoothReceiver);
     }
 
-    public void showEnableDialog(){
+    public void showEnableDialog() {
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
     }
 
-    public void enable(){
-        if(bluetoothAdapter!=null) {
+    public void enable() {
+        if (bluetoothAdapter != null) {
             if (!bluetoothAdapter.isEnabled()) {
                 bluetoothAdapter.enable();
             }
         }
     }
 
-    public void disable(){
-        if(bluetoothAdapter!=null) {
+    public void disable() {
+        if (bluetoothAdapter != null) {
             if (bluetoothAdapter.isEnabled()) {
                 bluetoothAdapter.disable();
             }
         }
     }
 
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return bluetoothAdapter.isEnabled();
     }
 
 
-    public void onActivityResult(int requestCode, final int resultCode){
-        if(bluetoothCallback!=null){
-            if(requestCode==REQUEST_ENABLE_BT){
+    public void onActivityResult(int requestCode, final int resultCode) {
+        if (bluetoothCallback != null) {
+            if (requestCode == REQUEST_ENABLE_BT) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(resultCode==Activity.RESULT_CANCELED){
+                        if (resultCode == Activity.RESULT_CANCELED) {
                             bluetoothCallback.onUserDeniedActivation();
                         }
                     }
@@ -124,7 +134,7 @@ public class Bluetooth {
         }
     }
 
-    public void connectToDevice(BluetoothDevice device){
+    public void connectToDevice(BluetoothDevice device) {
         new ConnectThread(device).start();
     }
 
@@ -132,7 +142,7 @@ public class Bluetooth {
         try {
             socket.close();
         } catch (final IOException e) {
-            if(communicationCallback!=null) {
+            if (communicationCallback != null) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -143,16 +153,16 @@ public class Bluetooth {
         }
     }
 
-    public boolean isConnected(){
+    public boolean isConnected() {
         return connected;
     }
 
-    public void send(String msg){
+    public void send(String msg) {
         try {
             out.write(msg.getBytes());
         } catch (final IOException e) {
-            connected=false;
-            if(communicationCallback!=null){
+            connected = false;
+            if (communicationCallback != null) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -163,13 +173,13 @@ public class Bluetooth {
         }
     }
 
-    public List<BluetoothDevice> getPairedDevices(){
+    public List<BluetoothDevice> getPairedDevices() {
         List<BluetoothDevice> devices = new ArrayList<>();
         devices.addAll(bluetoothAdapter.getBondedDevices());
         return devices;
     }
 
-    public void startScanning(){
+    public void startScanning() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_FOUND);
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -179,18 +189,18 @@ public class Bluetooth {
         bluetoothAdapter.startDiscovery();
     }
 
-    public void stopScanning(){
+    public void stopScanning() {
         bluetoothAdapter.cancelDiscovery();
     }
 
-    public void pair(BluetoothDevice device){
+    public void pair(BluetoothDevice device) {
         activity.registerReceiver(pairReceiver, new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED));
-        devicePair=device;
+        devicePair = device;
         try {
             Method method = device.getClass().getMethod("createBond", (Class[]) null);
             method.invoke(device, (Object[]) null);
         } catch (final Exception e) {
-            if(discoveryCallback!=null) {
+            if (discoveryCallback != null) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -203,12 +213,12 @@ public class Bluetooth {
 
     public void unpair(BluetoothDevice device) {
         activity.registerReceiver(pairReceiver, new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED));
-        devicePair=device;
+        devicePair = device;
         try {
             Method method = device.getClass().getMethod("removeBond", (Class[]) null);
             method.invoke(device, (Object[]) null);
         } catch (final Exception e) {
-            if(discoveryCallback!=null) {
+            if (discoveryCallback != null) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -220,12 +230,12 @@ public class Bluetooth {
     }
 
 
-    private class ReceiveThread extends Thread implements Runnable{
-        public void run(){
+    private class ReceiveThread extends Thread implements Runnable {
+        public void run() {
             String msg;
             try {
-                while((msg = input.readLine()) != null) {
-                    if(communicationCallback != null){
+                while ((msg = input.readLine()) != null) {
+                    if (communicationCallback != null) {
                         final String msgCopy = msg;
                         activity.runOnUiThread(new Runnable() {
                             @Override
@@ -236,8 +246,8 @@ public class Bluetooth {
                     }
                 }
             } catch (final IOException e) {
-                connected=false;
-                if(communicationCallback != null){
+                connected = false;
+                if (communicationCallback != null) {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -251,17 +261,21 @@ public class Bluetooth {
 
     private class ConnectThread extends Thread {
         ConnectThread(BluetoothDevice device) {
-            Bluetooth.this.device=device;
+            Bluetooth.this.device = device;
             try {
                 Bluetooth.this.socket = device.createRfcommSocketToServiceRecord(uuid);
             } catch (IOException e) {
-                if(communicationCallback!=null){
+                if (communicationCallback != null) {
                     communicationCallback.onError(e.getMessage());
                 }
             }
         }
 
         public void run() {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                Log.e("Bluetooth", "Bluetooth permission BLUETOOTH_SCAN not given");
+                return;
+            }
             bluetoothAdapter.cancelDiscovery();
 
             try {

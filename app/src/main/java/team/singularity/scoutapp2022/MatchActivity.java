@@ -1,5 +1,6 @@
 package team.singularity.scoutapp2022;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.time.Instant;
 import java.util.Date;
@@ -19,16 +23,19 @@ import java.util.Date;
 public final class MatchActivity extends AppCompatActivity {
 
     private static final String TAG = "Match Activity";
-    EditText matchEt;
-    CheckBox taxiCb;
-    Counter  lowerHubCounterAuton;
-    Counter  upperHubCounterAuton;
-    Counter  lowerHubCounterTele;
-    Counter  upperHubCounterTele;
-    Spinner  hangarSp;
-    TextView team;
-    String   number;
-    Button   submitBtn;
+    Spinner      positions;
+    Context      context;
+    ToggleButton allianceTb;
+    EditText     matchEt;
+    CheckBox     taxiCb;
+    Counter      lowerHubCounterAuton;
+    Counter      upperHubCounterAuton;
+    Counter      lowerHubCounterTele;
+    Counter      upperHubCounterTele;
+    Spinner      hangarSp;
+    TextView     team;
+    String       number;
+    Button       submitBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,9 @@ public final class MatchActivity extends AppCompatActivity {
 
         final ViewGroup VIEW = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
+        context              = this;
+        positions            = VIEW.findViewById(R.id.posSp);
+        allianceTb           = VIEW.findViewById(R.id.ehItGoRedBlue);
         matchEt              = VIEW.findViewById(R.id.matchEt);
         taxiCb               = VIEW.findViewById(R.id.taxiCb);
         lowerHubCounterAuton = new Counter(VIEW.findViewById(R.id.lowerHubCounterAuton));
@@ -51,14 +61,33 @@ public final class MatchActivity extends AppCompatActivity {
         number               = String.valueOf(this.getIntent().getExtras().get("Team Number"));
         submitBtn            = VIEW.findViewById(R.id.submitBtn);
 
+        //set color of the button
+        allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_blue));
+
         //set spinner values
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hanger_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hangarSp.setAdapter(adapter);
 
+        ArrayAdapter<CharSequence> adapter2electricBoogaloo = ArrayAdapter.createFromResource(this,
+                R.array.positions, android.R.layout.simple_spinner_item);
+        adapter2electricBoogaloo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        positions.setAdapter(adapter2electricBoogaloo);
+
         Log.i(TAG, "Team Number: " + number);
         team.setText(number);
+
+        allianceTb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (allianceTb.isChecked()) {
+                    allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_red));
+                } else {
+                    allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_blue));
+                }
+            }
+        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +100,7 @@ public final class MatchActivity extends AppCompatActivity {
                     Log.e(TAG, "Number string is not numeric");
                     number = "-1";
                 }
-                //TODO: isBlue and startingPos are hard coded, should prolly fix that
-                DatabaseClass.createRobotMatch(Util.BLUETOOTH_VERSION, System.currentTimeMillis() / 1000L, Integer.parseInt(matchEt.getText().toString()), Integer.parseInt(number), true, -1, taxiCb.isChecked(), lowerHubCounterAuton.getCount(), upperHubCounterAuton.getCount(), lowerHubCounterTele.getCount(), upperHubCounterTele.getCount(), hangarSp.getSelectedItemPosition());
+                DatabaseClass.createRobotMatch(Util.BLUETOOTH_VERSION, System.currentTimeMillis() / 1000L, Integer.parseInt(matchEt.getText().toString()), Integer.parseInt(number), !allianceTb.isChecked(), (positions.getSelectedItemPosition() + 1), taxiCb.isChecked(), lowerHubCounterAuton.getCount(), upperHubCounterAuton.getCount(), lowerHubCounterTele.getCount(), upperHubCounterTele.getCount(), hangarSp.getSelectedItemPosition());
                 //go back to MainActivity
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }

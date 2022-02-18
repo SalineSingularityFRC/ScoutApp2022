@@ -33,7 +33,7 @@ public final class MainActivity extends AppCompatActivity {
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent teams = new Intent(MainActivity.this.getApplicationContext(), Teams.class);
+                Intent teams = new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class);
                 MainActivity.this.startActivity(teams);
             }
         });
