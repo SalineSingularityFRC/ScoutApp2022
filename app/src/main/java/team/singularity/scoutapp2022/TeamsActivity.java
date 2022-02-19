@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -19,12 +20,21 @@ import java.util.Map;
 public final class TeamsActivity extends AppCompatActivity {
     private final String TAG = "Teams";
     private ListView view;
+    private Button   newTeamBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_teams);
 
         view = findViewById(R.id.teams_layout);
+        newTeamBtn = findViewById(R.id.newTeamButton);
+
+        newTeamBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), MakeTeamActivity.class));
+            }
+        });
 
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -48,10 +58,17 @@ public final class TeamsActivity extends AppCompatActivity {
 
         view.setAdapter((ListAdapter)adapter);
 
+        newTeamBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), MakeTeamActivity.class));
+            }
+        });
+
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String teamNumber = ((TextView)findViewById(R.id.teamNumber)).getText().toString();
+                String teamNumber = ((TextView)view.findViewById(R.id.teamNumber)).getText().toString();
                 Intent match = new Intent(TeamsActivity.this.getApplicationContext(), MatchActivity.class);
                 match.putExtra("Team Number", teamNumber);
                 startActivity(match);

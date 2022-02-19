@@ -272,10 +272,10 @@ public class Bluetooth {
         }
 
         public void run() {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            /*if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
                 Log.e("Bluetooth", "Bluetooth permission BLUETOOTH_SCAN not given");
                 return;
-            }
+            }*/
             bluetoothAdapter.cancelDiscovery();
 
             try {

@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.time.Instant;
 import java.util.Date;
@@ -62,7 +63,7 @@ public final class MatchActivity extends AppCompatActivity {
         submitBtn            = VIEW.findViewById(R.id.submitBtn);
 
         //set color of the button
-        allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_blue));
+        allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_blue, null));
 
         //set spinner values
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -82,9 +83,9 @@ public final class MatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (allianceTb.isChecked()) {
-                    allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_red));
+                    allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_red, null));
                 } else {
-                    allianceTb.setBackground(ContextCompat.getDrawable(context, R.drawable.round_corner_blue));
+                    allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_blue, null));
                 }
             }
         });

@@ -72,7 +72,9 @@ public class DatabaseClass {
                     "\"team\":" + teamNumber + "," +
                     "\"name\":\"" + teamName + "\"" +
                     "}"));
+            teamData = tempTeamData;
             send();
+            tempTeamData = new JSONArray();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -116,7 +118,8 @@ public class DatabaseClass {
             Log.e(TAG, "BLUETOOTH IS NULL! (seems like an issue)");
         } else {
             Log.i(TAG, "Sending data " + robotMatchData.toString());
-            bluetooth.send("{\"matchData\":" + robotMatchData.toString() + ",\"teamData\":[]}");
+            bluetooth.send("{\"matchData\":" + robotMatchData.toString() + ",\"teamData\":" +
+                    teamData.toString() + "}");
             Log.i(TAG, "Sent data");
         }
 
@@ -134,7 +137,7 @@ public class DatabaseClass {
             tempRobotMatchData.put("version", version);
             tempRobotMatchData.put("time", time);
             tempRobotMatchData.put("matchNum", matchNum);
-            tempRobotMatchData.put("teamNum", teamNum);
+            tempRobotMatchData.put("team", teamNum);
             tempRobotMatchData.put("isBlue", isBlue);
             tempRobotMatchData.put("startingPos", startingPos);
             tempRobotMatchData.put("taxi", taxi);

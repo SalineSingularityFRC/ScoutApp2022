@@ -26,15 +26,30 @@ public final class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
 
         Button newMatchBtn = findViewById(R.id.newMatchBtn);
+        Button pairDevBtn  = findViewById(R.id.pairDevBtn);
+        Button viewDataBtn = findViewById(R.id.viewData);
         TextView versionTv = findViewById(R.id.version);
+
+        pairDevBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), PairDeviceActivity.class));
+            }
+        });
+
+        viewDataBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), ViewDataActivity.class));
+            }
+        });
 
         versionTv.setText((CharSequence)"version " + Util.VERSION);
 
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent teams = new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class);
-                MainActivity.this.startActivity(teams);
+                MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class));
             }
         });
 
