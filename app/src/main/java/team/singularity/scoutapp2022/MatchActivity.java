@@ -3,13 +3,16 @@ package team.singularity.scoutapp2022;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -24,6 +27,7 @@ import java.util.Date;
 public final class MatchActivity extends AppCompatActivity {
 
     private static final String TAG = "Match Activity";
+    ImageButton  backBtn;
     Spinner      positions;
     Context      context;
     ToggleButton allianceTb;
@@ -42,12 +46,14 @@ public final class MatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_match);
 
+        //TODO:
         //if (/*if this stuff is null*/) {
         //    startActivity(); //go back to the last activity
         //}
 
         final ViewGroup VIEW = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
+        backBtn              = VIEW.findViewById(R.id.backBtn);
         context              = this;
         positions            = VIEW.findViewById(R.id.posSp);
         allianceTb           = VIEW.findViewById(R.id.ehItGoRedBlue);
@@ -79,9 +85,32 @@ public final class MatchActivity extends AppCompatActivity {
         Log.i(TAG, "Team Number: " + number);
         team.setText(number);
 
+        matchEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+            }
+        });
+
+        taxiCb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                startActivity(new Intent(getBaseContext(), TeamsActivity.class));
+            }
+        });
+
         allianceTb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 if (allianceTb.isChecked()) {
                     allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_red, null));
                 } else {
@@ -93,6 +122,7 @@ public final class MatchActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 //write data to pi
                 //Eh, it just goes off for a bit
                 try {
@@ -101,7 +131,25 @@ public final class MatchActivity extends AppCompatActivity {
                     Log.e(TAG, "Number string is not numeric");
                     number = "-1";
                 }
-                DatabaseClass.createRobotMatch(Util.BLUETOOTH_VERSION, System.currentTimeMillis() / 1000L, Integer.parseInt(matchEt.getText().toString()), Integer.parseInt(number), !allianceTb.isChecked(), (positions.getSelectedItemPosition() + 1), taxiCb.isChecked(), lowerHubCounterAuton.getCount(), upperHubCounterAuton.getCount(), lowerHubCounterTele.getCount(), upperHubCounterTele.getCount(), hangarSp.getSelectedItemPosition());
+                DatabaseClass.createRobotMatch(System.currentTimeMillis() / 1000L,
+                        Integer.parseInt(matchEt.getText().toString()),
+                        Integer.parseInt(number),
+                        !allianceTb.isChecked(),
+                        (positions.getSelectedItemPosition() + 1),
+                        // TODO: use these
+                        -1,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        //
+                        taxiCb.isChecked(),
+                        lowerHubCounterAuton.getCount(),
+                        upperHubCounterAuton.getCount(),
+                        lowerHubCounterTele.getCount(),
+                        upperHubCounterTele.getCount(),
+                        hangarSp.getSelectedItemPosition());
                 //go back to MainActivity
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }

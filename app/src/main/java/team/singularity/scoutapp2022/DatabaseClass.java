@@ -82,7 +82,7 @@ public class DatabaseClass {
 
     public static int getTeamNumber(int index) {
         try {
-            return teamData.getJSONObject(index).getInt("team");
+            return teamData.getJSONObject(index).getInt("number");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -113,13 +113,17 @@ public class DatabaseClass {
 
     }
 
-    private static void send() {
+    public static void send() {
+        send(robotMatchData.toString(), teamData.toString());
+    }
+
+    public static void send(String match, String team) {
         if (bluetooth == null) {
             Log.e(TAG, "BLUETOOTH IS NULL! (seems like an issue)");
         } else {
-            Log.i(TAG, "Sending data " + robotMatchData.toString());
-            bluetooth.send("{\"matchData\":" + robotMatchData.toString() + ",\"teamData\":" +
-                    teamData.toString() + "}");
+            Log.i(TAG, "Sending data " + match);
+            bluetooth.send("{\"matchData\":" + match + ",\"teamData\":" +
+                    team + "}");
             Log.i(TAG, "Sent data");
         }
 
@@ -127,25 +131,39 @@ public class DatabaseClass {
         //bluetooth.send_byte(new byte[] {'\0'});
     }
 
-    public static void createRobotMatch(double version, long time, int matchNum, int teamNum,
-                                        boolean isBlue, int startingPos, boolean taxi, 
-                                        int autoLowerHub, int autoUpperHub, int teleLowerHub, 
-                                        int teleUpperHub, int hangar) {
+    public static void createRobotMatch(long time, int matchNum, int teamNum,
+                                        boolean isBlue, int startingPos, int finalScore,
+                                        boolean defensive, boolean defendedAgainst,
+                                        boolean collision, boolean failedHangar,
+                                        boolean disconnection, boolean taxi, int autoLowerHub,
+                                        int autoUpperHub, int teleLowerHub, int teleUpperHub,
+                                        int hangar) {
+
+        final double VERSION = 1.1;
+
         try {
             tempRobotMatchData = new JSONObject();
 
-            tempRobotMatchData.put("version", version);
+            tempRobotMatchData.put("version", VERSION);
             tempRobotMatchData.put("time", time);
             tempRobotMatchData.put("matchNum", matchNum);
             tempRobotMatchData.put("team", teamNum);
             tempRobotMatchData.put("isBlue", isBlue);
             tempRobotMatchData.put("startingPos", startingPos);
+
+            tempRobotMatchData.put("defensive", defensive);
+            tempRobotMatchData.put("defendedAgainst", defendedAgainst);
+            tempRobotMatchData.put("collisionWithAlly", collision);
+            tempRobotMatchData.put("failedHangar", failedHangar);
+            tempRobotMatchData.put("disconnection", disconnection);
+
             tempRobotMatchData.put("taxi", taxi);
             tempRobotMatchData.put("autoLowerHub", autoLowerHub);
             tempRobotMatchData.put("autoUpperHub", autoUpperHub);
             tempRobotMatchData.put("teleLowerHub", teleLowerHub);
             tempRobotMatchData.put("teleUpperHub", teleUpperHub);
             tempRobotMatchData.put("hanger", hangar);
+            tempRobotMatchData.put("finalScore", finalScore);
 
             //DatabaseClass.send();
         } catch (JSONException e) {

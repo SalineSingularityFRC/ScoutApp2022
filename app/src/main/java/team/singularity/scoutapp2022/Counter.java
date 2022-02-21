@@ -15,16 +15,23 @@
  */
 package team.singularity.scoutapp2022;
 
+import android.app.Activity;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 /// A class that encapsulates two buttons and a text box
 public class Counter {
     private int count = 0;
     public final ImageButton addBtn, subBtn;
     public final TextView counterTv;
+    public final Activity activity;
 
     /// Get count
     public int getCount() {
@@ -56,27 +63,30 @@ public class Counter {
 
     Counter(ImageButton add, ImageButton sub, TextView counter) {
         // Initialize buttons and textView
-        this.addBtn = add;
-        this.subBtn = sub;
+        addBtn = add;
+        subBtn = sub;
         counterTv = counter;
+        activity = (Activity) counterTv.getContext();
 
         // Add listeners to buttons
         // TODO remove boilerplate
         this.addBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             public void onClick(View v) {
+                Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 inc(1);
             }
         });
 
         this.subBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 dec(1);
             }
         });
     }
 
     Counter(View counter) {
-        //TODO: This looks ugly reusing "view.findViewById(counterId)" should fix that
         this(counter.findViewById(R.id.addBtn),
                 counter.findViewById(R.id.subBtn),
                 counter.findViewById(R.id.counterTv));

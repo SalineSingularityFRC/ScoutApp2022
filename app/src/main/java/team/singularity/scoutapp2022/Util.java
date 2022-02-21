@@ -1,5 +1,8 @@
 package team.singularity.scoutapp2022;
 
+import static android.content.Context.VIBRATOR_SERVICE;
+
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
@@ -10,10 +13,13 @@ import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
 
+import android.os.VibrationEffect;
+import android.view.View;
+import android.os.Vibrator;
+
 public final class Util {
 
     public static final String VERSION = "0.0.3";
-    public static final double BLUETOOTH_VERSION = 0.1;
     public static final String PI_MAC_ADDRESS = "B8:27:EB:E8:64:53";
 
     public static final void alert(AppCompatActivity obj, String title, String message, OnClickListener listener) {
@@ -28,6 +34,15 @@ public final class Util {
         AlertDialog alert = builder.create();
         alert.setTitle(title);
         alert.show();
+    }
+
+    public static final void vibrate(Activity activity, VibrationEffect e) {
+        ((Vibrator) activity.getSystemService(VIBRATOR_SERVICE)).vibrate(e);
+    }
+
+    public static final void vibrate(View view, VibrationEffect e) {
+        vibrate((Activity) view.getContext(), e);
+        //Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
     }
 }
 

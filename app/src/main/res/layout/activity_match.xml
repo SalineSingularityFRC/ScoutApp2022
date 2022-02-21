@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MatchActivity">
 
+    <include layout="@layout/content_toolbar"
+        android:id="@+id/toolbar"/>
+
     <ToggleButton
         android:id="@+id/ehItGoRedBlue"
         android:textOn="Red"
@@ -16,7 +19,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/ehItGoRedBlueTv"
@@ -70,8 +73,8 @@
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/SSSSSB"
-        android:textCursorDrawable="@color/SSSSSB"
+        android:backgroundTint="@color/a_different_blue_i_swear"
+        android:textCursorDrawable="@color/a_different_blue_i_swear"
         android:hint="match number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +124,7 @@
         android:layout_marginEnd="16dp"
         android:background="?android:attr/listChoiceIndicatorMultiple"
         android:button="@null"
-        android:backgroundTint="@color/SSSSSB"
+        android:backgroundTint="@color/a_different_blue_i_swear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autonBg" />
 
@@ -270,19 +273,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="finish and"
-        android:textColor="@color/gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.15" />
 
     <ImageView
         android:layout_width="match_parent"
