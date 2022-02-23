@@ -28,6 +28,7 @@ public final class MatchActivity extends AppCompatActivity {
 
     private static final String TAG = "Match Activity";
     ImageButton  backBtn;
+    TextView     header;
     Spinner      positions;
     Context      context;
     ToggleButton allianceTb;
@@ -40,6 +41,7 @@ public final class MatchActivity extends AppCompatActivity {
     Spinner      hangarSp;
     TextView     team;
     String       number;
+    String       name;
     Button       submitBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public final class MatchActivity extends AppCompatActivity {
         final ViewGroup VIEW = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
         backBtn              = VIEW.findViewById(R.id.backBtn);
+        header               = VIEW.findViewById(R.id.toolbarTv);
         context              = this;
         positions            = VIEW.findViewById(R.id.posSp);
         allianceTb           = VIEW.findViewById(R.id.ehItGoRedBlue);
@@ -66,7 +69,11 @@ public final class MatchActivity extends AppCompatActivity {
         hangarSp             = VIEW.findViewById(R.id.monkeyBarThingSp);
         team                 = this.findViewById(R.id.team);
         number               = String.valueOf(this.getIntent().getExtras().get("Team Number"));
+        name                 = String.valueOf(this.getIntent().getExtras().get("Team Name"));
         submitBtn            = VIEW.findViewById(R.id.submitBtn);
+
+        //set team number at the top
+        header.setText(name);
 
         //set color of the button
         allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_blue, null));

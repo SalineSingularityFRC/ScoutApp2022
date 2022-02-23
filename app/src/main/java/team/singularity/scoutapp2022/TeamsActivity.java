@@ -96,8 +96,10 @@ public final class TeamsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 String teamNumber = ((TextView)view.findViewById(R.id.teamNumber)).getText().toString();
+                String teamName = ((TextView)view.findViewById(R.id.teamName)).getText().toString();
                 Intent match = new Intent(TeamsActivity.this.getApplicationContext(), MatchActivity.class);
                 match.putExtra("Team Number", teamNumber);
+                match.putExtra("Team Name", teamName);
                 startActivity(match);
                 finish();
             }
