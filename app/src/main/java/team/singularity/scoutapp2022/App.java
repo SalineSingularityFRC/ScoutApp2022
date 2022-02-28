@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 public class App extends Application {
+    //a hack to get the app context from anywhere, not just an activity
     private static Context mContext;
 
     @Override

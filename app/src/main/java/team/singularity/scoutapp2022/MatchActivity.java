@@ -131,7 +131,6 @@ public final class MatchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 //write data to pi
-                //Eh, it just goes off for a bit
                 try {
                     Integer.parseInt(number);
                 } catch (NumberFormatException nfe) {

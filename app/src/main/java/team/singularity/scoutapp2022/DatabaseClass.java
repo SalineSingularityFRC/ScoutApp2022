@@ -27,46 +27,10 @@ public class DatabaseClass {
 
     public static void setup(BluetoothClass b) {
         DatabaseClass.bluetooth = b;
-
-        ArrayList jsonObjectArray = new ArrayList();
-        String currentJSONString = "";
-/*///
-        try {
-            FileInputStream fis = new FileInputStream("teamData.json");
-            //FileInputStream fis = bluetooth.activity.openFileInput("teamData");
-            int dat = fis.read();
-            Log.i(TAG, String.format("Dat: %d :: Str: %s", dat, fis.toString()));
-            teamData = new JSONArray(dat);
-            /*while( (currentJSONString = fis.read()) != null) {
-                JSONObject currentObject = new JSONObject(currentJSONString);
-
-                jsonObjectArray.add(currentObject);
-            }*//*///
-            Log.i(TAG, "finished the fis.read()");
-            fis.close();
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, "Got exception!");
-            try {
-                FileOutputStream fos = bluetooth.activity.openFileOutput("teamData.json", Context.MODE_PRIVATE);
-                //fos.write("".getBytes());
-                fos.close();
-                FileInputStream fis = bluetooth.activity.openFileInput("teamData.json");
-                int dat = fis.read();
-                Log.i(TAG, String.format("Data: %d :: String: %s", dat, fis.toString()));
-                teamData = new JSONArray(fis.read());
-                fis.close();
-            } catch (IOException | JSONException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-            Log.i(TAG, "caught JSONException");
-        }///*/
     }
 
     public static void makeTeam(int teamNumber, String teamName) {
+        //make a team and send it to the pi with manually created json (eww)
         try {
             tempTeamData.put(new JSONObject("{" +
                     "\"team\":" + teamNumber + "," +
@@ -86,10 +50,12 @@ public class DatabaseClass {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.e(TAG, "failed to get team number, returning -1");
         return -1;
     }
 
     public static String getTeamName(int index) {
+        //probably shouldn't really use this but I guess it works
         try {
             return teamData.getJSONObject(index).getString("name");
         } catch (JSONException e) {
@@ -99,6 +65,7 @@ public class DatabaseClass {
     }
 
     public static void dataSent(String data) {
+        //sends data in correct format given json in string form
         try {
             teamData = new JSONArray(data);
             FileOutputStream fos = App.getContext().openFileOutput("teamData", Context.MODE_PRIVATE);
@@ -110,25 +77,22 @@ public class DatabaseClass {
         }
         robotMatchData = new JSONArray();
         tempTeamData = new JSONArray();
-
     }
 
     public static void send() {
+        //send what's stored
         send(robotMatchData.toString(), teamData.toString());
     }
 
     public static void send(String match, String team) {
+        //format data and send it, again with manually created json (eww)
         if (bluetooth == null) {
             Log.e(TAG, "BLUETOOTH IS NULL! (seems like an issue)");
         } else {
             Log.i(TAG, "Sending data " + match);
-            bluetooth.send("{\"matchData\":" + match + ",\"teamData\":" +
-                    team + "}");
+            bluetooth.send("{\"matchData\":" + match + ",\"teamData\":" + team + "}");
             Log.i(TAG, "Sent data");
         }
-
-        // For the newest and greatest SSSS.py (newest, don't know about greatest)
-        //bluetooth.send_byte(new byte[] {'\0'});
     }
 
     public static void createRobotMatch(long time, int matchNum, int teamNum,
@@ -138,6 +102,8 @@ public class DatabaseClass {
                                         boolean disconnection, boolean taxi, int autoLowerHub,
                                         int autoUpperHub, int teleLowerHub, int teleUpperHub,
                                         int hangar) {
+        //this will need to be changed for newer games
+        //create json for a match and send it
 
         final double VERSION = 1.1;
 

@@ -26,21 +26,23 @@ public class MakeTeamActivity extends AppCompatActivity {
         backBtn   = findViewById(R.id.backBtn);
         numberEt  = findViewById(R.id.numberEt);
         nameEt    = findViewById(R.id.nameEt);
-
-
     }
 
     protected void onStart() {
         super.onStart();
-        submitBtn.setOnClickListener(view -> {
-            DatabaseClass.makeTeam(Integer.parseInt(numberEt.getText().toString()), nameEt.getText().toString());
-            startActivity(new Intent(getBaseContext(), TeamsActivity.class));
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //make a team and pretend this works
+                DatabaseClass.makeTeam(Integer.parseInt(numberEt.getText().toString()), nameEt.getText().toString());
+                startActivity(new Intent(getBaseContext(), TeamsActivity.class));
+            }
         });
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                //go back to teams activity
                 startActivity(new Intent(getBaseContext(), TeamsActivity.class));
             }
         });

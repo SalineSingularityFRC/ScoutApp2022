@@ -16,15 +16,15 @@ import org.jetbrains.annotations.Nullable;
 
 public final class MainActivity extends AppCompatActivity {
     final String TAG = "MainActivity";
-    DatabaseClass database;
     private final BluetoothClass BLUETOOTH;
 
+    //if someone could explain to me what's happening here that would be great -Edison Bregger 2022
     {
         BLUETOOTH = new BluetoothClass(this);
     }
 
-    @SuppressLint("SetTextI18n")
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @SuppressLint("SetTextI18n") //don't know what this does
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
@@ -34,53 +34,49 @@ public final class MainActivity extends AppCompatActivity {
         ImageButton backBtn = findViewById(R.id.backBtn);
         TextView versionTv  = findViewById(R.id.version);
 
+        //make it so you can't see the back button on the first screen
         backBtn.setVisibility(View.INVISIBLE);
+
+        //throw the version on there
+        versionTv.setText((CharSequence)"version " + Util.VERSION);
 
         pairDevBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
-                MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), PairDeviceActivity.class));
+                //go to the pair device activity
+                startActivity(new Intent(MainActivity.this.getApplicationContext(), PairDeviceActivity.class));
             }
         });
 
         viewDataBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                //go to the view data activity, might be removed later as we don't have much of a
+                //way of doing this
                 startActivity(new Intent(getBaseContext(), ViewDataActivity.class));
             }
         });
 
-        versionTv.setText((CharSequence)"version " + Util.VERSION);
-
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
-                MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class));
+                //go to the new match activity
+                startActivity(new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class));
             }
         });
-
-        /*(Button)(findViewById(R.id.viewData)).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Util.alert(this, "Not implemented!", "Go away!!", new OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ;
-                    }
-                })
-            }
-        });*/
     }
 
     protected void onStart() {
         super.onStart();
+        //get everything ready
+
         Log.i(TAG, "Started MainActivity");
+
         Log.i(TAG, "Setting up bluetooth");
         BLUETOOTH.setup();
         DatabaseClass.setup(BLUETOOTH);
+
+        //send empty data json to the pi so it knows to give us the information on the teams
         String data = "{\"teamData\":[],\"matchData\":[]}";
         Log.i(TAG, "Sending data '" + data + '\'');
         BLUETOOTH.send(data);

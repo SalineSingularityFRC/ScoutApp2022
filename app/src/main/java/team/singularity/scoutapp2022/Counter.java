@@ -13,6 +13,9 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS AWFUL CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
+//last edited by Edison Bregger 2/28/2022
+
 package team.singularity.scoutapp2022;
 
 import android.app.Activity;
@@ -27,6 +30,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 /// A class that encapsulates two buttons and a text box
+//why did Skye have three "/"?
 public class Counter {
     private int count = 0;
     public final ImageButton addBtn, subBtn;
@@ -71,16 +75,13 @@ public class Counter {
         // Add listeners to buttons
         // TODO remove boilerplate
         this.addBtn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.Q)
             public void onClick(View v) {
-                //Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 inc(1);
             }
         });
 
         this.subBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 dec(1);
             }
         });
