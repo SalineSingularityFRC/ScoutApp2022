@@ -39,7 +39,7 @@ public final class MainActivity extends AppCompatActivity {
         pairDevBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), PairDeviceActivity.class));
             }
         });
@@ -47,7 +47,7 @@ public final class MainActivity extends AppCompatActivity {
         viewDataBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), ViewDataActivity.class));
             }
         });
@@ -57,7 +57,7 @@ public final class MainActivity extends AppCompatActivity {
         newMatchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), TeamsActivity.class));
             }
         });

@@ -37,7 +37,7 @@ public final class TeamsActivity extends AppCompatActivity {
         reloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 DatabaseClass.send("[]", "[]");
                 finishActivity(1);
                 startActivity(new Intent(getBaseContext(), TeamsActivity.class));
@@ -47,7 +47,7 @@ public final class TeamsActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }
         });
@@ -55,7 +55,7 @@ public final class TeamsActivity extends AppCompatActivity {
         newTeamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), MakeTeamActivity.class));
             }
         });
@@ -63,7 +63,7 @@ public final class TeamsActivity extends AppCompatActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 // start MatchInformation page
                 Log.i(TeamsActivity.this.TAG, "Clicked teams view");
             }
@@ -86,7 +86,7 @@ public final class TeamsActivity extends AppCompatActivity {
         newTeamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), MakeTeamActivity.class));
             }
         });
@@ -94,7 +94,7 @@ public final class TeamsActivity extends AppCompatActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 String teamNumber = ((TextView)view.findViewById(R.id.teamNumber)).getText().toString();
                 String teamName = ((TextView)view.findViewById(R.id.teamName)).getText().toString();
                 Intent match = new Intent(TeamsActivity.this.getApplicationContext(), MatchActivity.class);

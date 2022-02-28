@@ -95,21 +95,21 @@ public final class MatchActivity extends AppCompatActivity {
         matchEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
             }
         });
 
         taxiCb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
             }
         });
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), TeamsActivity.class));
             }
         });
@@ -117,7 +117,7 @@ public final class MatchActivity extends AppCompatActivity {
         allianceTb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 if (allianceTb.isChecked()) {
                     allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_red, null));
                 } else {
@@ -129,7 +129,7 @@ public final class MatchActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 //write data to pi
                 //Eh, it just goes off for a bit
                 try {

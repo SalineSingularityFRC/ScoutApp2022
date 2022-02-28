@@ -73,14 +73,14 @@ public class Counter {
         this.addBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.Q)
             public void onClick(View v) {
-                Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                //Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 inc(1);
             }
         });
 
         this.subBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                //Util.vibrate(activity, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 dec(1);
             }
         });

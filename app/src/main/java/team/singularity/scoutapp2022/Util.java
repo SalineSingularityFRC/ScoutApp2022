@@ -42,7 +42,7 @@ public final class Util {
 
     public static final void vibrate(View view, VibrationEffect e) {
         vibrate((Activity) view.getContext(), e);
-        //Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+        //////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
     }
 }
 

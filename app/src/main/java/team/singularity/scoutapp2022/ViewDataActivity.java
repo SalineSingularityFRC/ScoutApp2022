@@ -16,7 +16,7 @@ public class ViewDataActivity extends AppCompatActivity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
+                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }
         });

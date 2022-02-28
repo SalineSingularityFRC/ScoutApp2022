@@ -82,7 +82,7 @@ public class DatabaseClass {
 
     public static int getTeamNumber(int index) {
         try {
-            return teamData.getJSONObject(index).getInt("number");
+            return teamData.getJSONObject(index).getInt("team");
         } catch (JSONException e) {
             e.printStackTrace();
         }
