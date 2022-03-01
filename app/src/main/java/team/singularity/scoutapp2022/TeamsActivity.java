@@ -63,7 +63,6 @@ public final class TeamsActivity extends AppCompatActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 // start MatchInformation page
                 Log.i(TeamsActivity.this.TAG, "Clicked teams view");
             }
@@ -80,13 +79,11 @@ public final class TeamsActivity extends AppCompatActivity {
                 R.layout.teams_layout,
                 new String[]{"name", "number"},
                 new int[]{R.id.teamName, R.id.teamNumber});
-
         view.setAdapter((ListAdapter)adapter);
 
         newTeamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 startActivity(new Intent(getBaseContext(), MakeTeamActivity.class));
             }
         });
@@ -94,7 +91,6 @@ public final class TeamsActivity extends AppCompatActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
                 String teamNumber = ((TextView)view.findViewById(R.id.teamNumber)).getText().toString();
                 String teamName = ((TextView)view.findViewById(R.id.teamName)).getText().toString();
                 Intent match = new Intent(TeamsActivity.this.getApplicationContext(), MatchActivity.class);
@@ -111,7 +107,7 @@ public final class TeamsActivity extends AppCompatActivity {
         if (DatabaseClass.teamData != null) {
             for (int i = 0; i < DatabaseClass.teamData.length(); i++) {
                 String[] name =  DatabaseClass.getTeamName(i).split("_");
-                String   name2electricBoogaloo = "";
+                String name2electricBoogaloo = "";
                 for (int j = 0; j < name.length; j++) {
                     name2electricBoogaloo += name[j] + " ";
                 }
@@ -140,8 +136,6 @@ public final class TeamsActivity extends AppCompatActivity {
             HashMap resultsMap = new HashMap();
             ((Map) resultsMap).put("name", "Database.teamData is NULL!");
             ((Map) resultsMap).put("number", "The PI probably isn't connected");
-            //((Map) resultsMap).put("name", "bluetoothTest");
-            //((Map) resultsMap).put("number", "69");
             list.add(resultsMap);
 
             Log.e(TAG, "Database.teamData is NULL!");
