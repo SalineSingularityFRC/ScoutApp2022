@@ -81,7 +81,8 @@ public class DatabaseClass {
 
     public static void send() {
         //send what's stored
-        send(robotMatchData.toString(), teamData.toString());
+        //send(robotMatchData.toString(), teamData.toString());
+        send(robotMatchData.toString(), "[]");
     }
 
     public static void send(String match, String team) {

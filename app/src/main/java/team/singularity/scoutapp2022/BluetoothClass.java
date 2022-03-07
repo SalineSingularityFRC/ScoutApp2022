@@ -100,7 +100,6 @@ public class BluetoothClass {
             BLUETOOTH.connectToAddress(Util.PI_MAC_ADDRESS);
         //pendingData+=data;
         pendingData=data;
-
     }
 
     public void send_byte(byte[] data) {
