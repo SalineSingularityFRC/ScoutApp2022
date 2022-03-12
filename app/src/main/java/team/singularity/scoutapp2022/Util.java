@@ -19,7 +19,7 @@ import android.os.Vibrator;
 
 public final class Util {
 
-    public static final String VERSION = "0.0.3";
+    public static final String VERSION = "0.0.4";
     public static final String PI_MAC_ADDRESS = "B8:27:EB:E8:64:53";
 
     public static final void alert(AppCompatActivity obj, String title, String message, OnClickListener listener) {

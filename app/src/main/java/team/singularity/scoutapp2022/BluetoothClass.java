@@ -51,6 +51,7 @@ public class BluetoothClass {
                 //send it over to DatabaseClass to handle
                 DatabaseClass.dataSent(message);
                 Log.i(TAG, "Data transfer complete!");
+                Log.i(TAG, "Data: " + message);
             }
 
             @Override

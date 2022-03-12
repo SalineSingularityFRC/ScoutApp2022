@@ -306,6 +306,7 @@ public class Bluetooth {
 
                 try {
                     socket.close();
+                    Log.d("BLUETOOTH", "Closed Socket");
                 } catch (final IOException closeException) {
                     if (communicationCallback != null) {
                         activity.runOnUiThread(new Runnable() {
