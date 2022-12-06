@@ -10,8 +10,12 @@
     </string-array>
 
     <string-array name="positions">
-        <item>Left</item>
+        <item>Left (Hangar)</item>
         <item>Middle</item>
         <item>Right</item>
     </string-array>
+
+    <string name="tab_text_1">General</string>
+    <string name="tab_text_2">Auton</string>
+    <string name="tab_text_3">Teleop</string>
 </resources>

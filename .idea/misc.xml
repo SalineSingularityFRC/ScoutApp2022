@@ -21,11 +21,15 @@
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/activity_pair_device.xml" value="0.1" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/activity_teams.xml" value="0.132" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/activity_view_data.xml" value="0.1" />
-        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/content_counter.xml" value="0.1" />
+        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/content_counter.xml" value="0.3" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/content_teams.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/content_toolbar.xml" value="0.2" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_content_counter.xml" value="0.2" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_content_counter_list.xml" value="0.44000000000000006" />
+        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_general.xml" value="0.16283783783783784" />
+        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_match_1.xml" value="0.16283783783783784" />
+        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_match_2.xml" value="0.132" />
+        <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_match_3.xml" value="0.16283783783783784" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/fragment_teams_layout_list.xml" value="0.268" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/layout/teams_layout.xml" value="0.268" />
         <entry key="..\:/Users/ediso/AndroidStudioProjects/ScoutApp2022/app/src/main/res/mipmap-anydpi-v26/ic_hornet_logo.xml" value="0.118" />

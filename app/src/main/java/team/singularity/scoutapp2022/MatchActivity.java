@@ -17,20 +17,47 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import android.os.Bundle;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+
+import team.singularity.scoutapp2022.databinding.ActivityMainBinding;
+import team.singularity.scoutapp2022.databinding.ActivityMatchBinding;
+import team.singularity.scoutapp2022.placeholder.SectionsPagerAdapter;
 
 import java.time.Instant;
 import java.util.Date;
 
 public final class MatchActivity extends AppCompatActivity {
 
+    private ActivityMatchBinding binding;
+
     private static final String TAG = "Match Activity";
     ImageButton  backBtn;
     TextView     header;
-    Spinner      positions;
     Context      context;
+    String       number;
+    String       name;
+    TextView     team;
+    /*Spinner      positions;
     ToggleButton allianceTb;
     EditText     matchEt;
     CheckBox     taxiCb;
@@ -39,60 +66,63 @@ public final class MatchActivity extends AppCompatActivity {
     Counter      lowerHubCounterTele;
     Counter      upperHubCounterTele;
     Spinner      hangarSp;
-    TextView     team;
-    String       number;
-    String       name;
     Button       submitBtn;
+     */
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_match);
 
-        //TODO:
-        //if (/*if this stuff is null*/) {
-        //    startActivity(); //go back to the last activity
-        //}
+        binding = ActivityMatchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        ViewPager viewPager = binding.viewPager;
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabs = binding.tabs;
+        tabs.setupWithViewPager(viewPager);
 
         final ViewGroup VIEW = (ViewGroup) ((ViewGroup) this
                 .findViewById(android.R.id.content)).getChildAt(0);
         backBtn              = VIEW.findViewById(R.id.backBtn);
         header               = VIEW.findViewById(R.id.toolbarTv);
         context              = this;
-        positions            = VIEW.findViewById(R.id.posSp);
-        allianceTb           = VIEW.findViewById(R.id.ehItGoRedBlue);
-        matchEt              = VIEW.findViewById(R.id.matchEt);
-        taxiCb               = VIEW.findViewById(R.id.taxiCb);
-        lowerHubCounterAuton = new Counter(VIEW.findViewById(R.id.lowerHubCounterAuton));
-        upperHubCounterAuton = new Counter(VIEW.findViewById(R.id.upperHubCounterAuton));
-        lowerHubCounterTele  = new Counter(VIEW.findViewById(R.id.lowerHubCounterTele));
-        upperHubCounterTele  = new Counter(VIEW.findViewById(R.id.upperHubCounterTele));
-        hangarSp             = VIEW.findViewById(R.id.monkeyBarThingSp);
-        team                 = this.findViewById(R.id.team);
+        //positions            = VIEW.findViewById(R.id.posSp);
+        //allianceTb           = VIEW.findViewById(R.id.ehItGoRedBlue);
+        //matchEt              = VIEW.findViewById(R.id.matchEt);
+        //taxiCb               = VIEW.findViewById(R.id.taxiCb);
+        //lowerHubCounterAuton = new Counter(VIEW.findViewById(R.id.lowerHubCounterAuton));
+        //upperHubCounterAuton = new Counter(VIEW.findViewById(R.id.upperHubCounterAuton));
+        //lowerHubCounterTele  = new Counter(VIEW.findViewById(R.id.lowerHubCounterTele));
+        //upperHubCounterTele  = new Counter(VIEW.findViewById(R.id.upperHubCounterTele));
+        //hangarSp             = VIEW.findViewById(R.id.monkeyBarThingSp);
+        team                 = binding.tabs.findViewById(R.id.team);
         number               = String.valueOf(this.getIntent().getExtras().get("Team Number"));
         name                 = String.valueOf(this.getIntent().getExtras().get("Team Name"));
-        submitBtn            = VIEW.findViewById(R.id.submitBtn);
+        //submitBtn            = VIEW.findViewById(R.id.submitBtn);
+
 
         //set team number at the top
         header.setText(name);
 
         //set color of the button
-        allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_blue, null));
+        //allianceTb.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_corner_blue, null));
 
         //set spinner values
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hanger_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        hangarSp.setAdapter(adapter);
+        //hangarSp.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> adapter2electricBoogaloo = ArrayAdapter.createFromResource(this,
                 R.array.positions, android.R.layout.simple_spinner_item);
         adapter2electricBoogaloo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        positions.setAdapter(adapter2electricBoogaloo);
+        //positions.setAdapter(adapter2electricBoogaloo);
 
         Log.i(TAG, "Team Number: " + number);
-        team.setText(number);
+        //team.setText(number);
 
-        matchEt.setOnClickListener(new View.OnClickListener() {
+        /*matchEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ////Util.vibrate(view, VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK));
@@ -160,5 +190,6 @@ public final class MatchActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
             }
         });
+    */
     }
 }

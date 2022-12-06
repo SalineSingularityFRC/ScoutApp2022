@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import team.singularity.scoutapp2022.placeholder.PlaceholderContent.PlaceholderItem;
+import team.singularity.scoutapp2022.placeholder.PlaceholderContent2.PlaceholderItem;
 import team.singularity.scoutapp2022.databinding.FragmentContentCounterBinding;
 
 import java.util.List;

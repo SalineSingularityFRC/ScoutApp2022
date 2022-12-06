@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchActivity">
+
+    <TextView
+        android:id="@+id/taxiTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Taxi"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/taxiCb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/taxiCb" />
+
+    <CheckBox
+        android:id="@+id/taxiCb"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listChoiceIndicatorMultiple"
+        android:button="@null"
+        android:backgroundTint="@color/a_different_blue_i_swear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/lowerHubCounterAuton"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taxiCb"/>
+
+    <TextView
+        android:id="@+id/lowerHubTvAuton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Lower Hub"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lowerHubCounterAuton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lowerHubCounterAuton" />
+
+    <include
+        android:id="@+id/upperHubCounterAuton"
+        layout="@layout/content_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterAuton"/>
+
+    <TextView
+        android:id="@+id/upperHubTvAuton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Upper Hub"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/upperHubCounterAuton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upperHubCounterAuton" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/lowerHubCounterAuton"
+        app:layout_constraintTop_toBottomOf="@+id/taxiCb" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/upperHubCounterAuton"
+        app:layout_constraintTop_toBottomOf="@+id/lowerHubCounterAuton" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@+id/upperHubCounterAuton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
